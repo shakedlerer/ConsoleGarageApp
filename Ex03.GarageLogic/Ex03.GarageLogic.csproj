@@ -48,13 +48,13 @@
     <Compile Include="eVehicleType.cs" />
     <Compile Include="FuelEngine .cs" />
     <Compile Include="Garage.cs" />
-    <Compile Include="Record.cs" />
+    <Compile Include="VehicleTicket.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleFactory.cs" />
     <Compile Include="VehicleRequest.cs" />
-    <Compile Include="Wheel.cs" />
+    <Compile Include="Tire.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

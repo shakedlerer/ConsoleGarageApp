@@ -8,23 +8,22 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-
-        private string m_ModelName;
-        private readonly string r_LicenseNumber;
-        protected float m_EnergyLeft;
-        protected readonly List<Wheel> r_CollectionOfWheels;
-        protected readonly Engine r_Engine;
+        protected string m_ModelName;
+        protected readonly string r_LicenseNumber;
+        //protected float m_EnergyLeft;
+        protected readonly List<Tire> r_CollectionOfWheels;
+        protected Engine r_Engine;
 
         public void FillAllWhellsToMaximum()
         {
-            foreach (Wheel wheel in r_CollectionOfWheels)
+            foreach (Tire wheel in r_CollectionOfWheels)
             {
                 wheel.FillToMaximum();
             }
         }
         public void SetWheelsPressure(float i_PressureToSet)
         {
-            foreach (Wheel wheel in r_CollectionOfWheels)
+            foreach (Tire wheel in r_CollectionOfWheels)
             {
                 wheel.AirPressure = i_PressureToSet;
             }
@@ -32,24 +31,25 @@ namespace Ex03.GarageLogic
 
         public void SetWheelsManufactory(string i_ManufactoryName)
         {
-            foreach (Wheel wheel in r_CollectionOfWheels)
+            foreach (Tire wheel in r_CollectionOfWheels)
             {
                 wheel.ManufactoryName = i_ManufactoryName;
             }
         }
 
 
-        public override string ToString()
-        {
-            return string.Format(@"Model Name:{0}
-License Number:{1}
-Energy Left:{2}
-{3}
-{4}", m_ModelName, r_LicenseNumber, m_EnergyLeft, r_CollectionOfWheels[0].ToString(), r_Engine.ToString());
+//        public override string ToString()
+//        {
+//            return string.Format(@"Model Name:{0}
+//License Number:{1}
+//Energy Left:{2}
+//{3}
+//{4}", m_ModelName, r_LicenseNumber, r_Engine.EnergyUnitLeft, r_CollectionOfWheels[0].ToString(), r_Engine.ToString());
 
 
-        }
-        public Vehicle(string i_LicenseNumber, Engine i_Engine, List<Wheel> i_Wheels)
+//        }
+
+        public Vehicle(string i_LicenseNumber, Engine i_Engine, List<Tire> i_Wheels)
         {
             r_LicenseNumber = i_LicenseNumber;
             r_Engine = i_Engine;
@@ -62,9 +62,18 @@ Energy Left:{2}
             get { return m_ModelName; }
         }
 
-        private float getEnergyLeft()
+        //private float getEnergyLeft()
+        //{
+        //    return r_Engine.EnergyUnitLeft;
+        //}
+
+        public float CurrentEnergy
         {
-            return r_Engine.EnergyUnitLeft;
+            set { r_Engine.EnergyUnitLeft = value; }
+            get
+            {
+                return r_Engine.EnergyUnitLeft;
+            }
         }
 
         public string License
@@ -85,6 +94,7 @@ Energy Left:{2}
         public Engine Engine
         {
             get { return r_Engine; }
+            set { r_Engine = value; }
         }
 
         public void Fill(float i_ToFill)
@@ -94,6 +104,10 @@ Energy Left:{2}
         public float CurrentAirInWheels
         {
             set { SetWheelsPressure(value); }
+            get
+            {
+                return r_CollectionOfWheels[0].AirPressure;
+            }
         }
         public string ManufactoryName
         {

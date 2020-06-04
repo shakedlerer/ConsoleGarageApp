@@ -24,7 +24,7 @@ namespace Ex03.ConsoleUI
         public void CheckIfStringIsValidPhoneNumber(string i_PhoneString)
         {
             int number;
-            if (!(CheckIfInputIsNumber(i_PhoneString, out number) && i_PhoneString.Length == 10))
+            if (!(CheckIfInputIsNumber(i_PhoneString, out number)))
             {
                 string errorMsg = string.Format("Error: invalid Phone Number: {0}", i_PhoneString);
                 throw new ArgumentException(errorMsg);

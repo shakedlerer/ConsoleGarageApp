@@ -8,7 +8,6 @@ namespace Ex03.GarageLogic
 {
     class ElectricEngine : Engine
     {
-
         public ElectricEngine(float i_MaxHours) :
             base(i_MaxHours)
         {
@@ -21,16 +20,30 @@ Hours left:{0}
 Maximum loading time:{1}", m_EnergyUnitLeft, m_MaxEnergyUnit);
         }
 
-        public void FillEnergy(float i_EnergyToFill)
+        public void FillEnergy(float i_MinutesToFill)
         {
-            base.Fill(i_EnergyToFill);
+            try
+            {
+                Fill(i_MinutesToFill);
+            }
+            catch(ValueOutOfRangeException e)
+            {
+                string msg = "Can't charge this much Energy";
+                throw new ValueOutOfRangeException(msg, e.MinValue, e.MaxValue);
+            }
         }
 
         public float CurrentElectricityCapacity
         {
-            set { base.Energy = value; }
-            get { return base.Energy; }
+            set { m_EnergyUnitLeft = value; }
+            get { return m_EnergyUnitLeft; }
         }
+
+        //public float EnergyUnitLeft
+        //{
+        //    get { return m_EnergyUnitLeft; }
+        //    set { m_EnergyUnitLeft = value; }
+        //}
 
     }
 }

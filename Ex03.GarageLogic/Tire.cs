@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class Wheel
+    public class Tire
     {
         private float m_CurrentPressure;
         private readonly float r_MaxPressure;
@@ -18,11 +18,11 @@ namespace Ex03.GarageLogic
             return string.Format("Current Pressure:{1}{0}Maximum Pressure:{2}{0}ManuFactory Name:{3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m_ManufactoryName);
         }
 
-        public Wheel(float i_MaxPressure)
+        public Tire(float i_MaxPressure)
         {
             r_MaxPressure = i_MaxPressure;
         }
-        public Wheel(float i_CurrentPressure, float i_MaxPressure, string i_ManufactoryName)
+        public Tire(float i_CurrentPressure, float i_MaxPressure, string i_ManufactoryName)
         {
             m_CurrentPressure = i_CurrentPressure;
             r_MaxPressure = i_MaxPressure;
@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
             {
                 if (value < k_MinToFill || value > r_MaxPressure)
                 {
-                    throw new ValueOutOfRangeException(k_MinToFill, r_MaxPressure);
+                    throw new ValueOutOfRangeException("Can't fill this amount of air",k_MinToFill, r_MaxPressure);
                 }
                 m_CurrentPressure = value;
             }

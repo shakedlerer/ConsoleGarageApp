@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
     {
         A = 1,
         A1,
-        A2,
+        AA,
         B
     }
 }

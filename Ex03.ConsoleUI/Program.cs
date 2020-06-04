@@ -8,8 +8,8 @@ namespace Ex03.ConsoleUI
     {
         public static void Main()
         {
-            IOhandler io = new IOhandler();
-            io.RunTheSystem();
+            App io = new App();
+            io.Start();
         }
     }
 }

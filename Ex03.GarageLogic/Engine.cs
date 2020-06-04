@@ -29,28 +29,28 @@ namespace Ex03.GarageLogic
             m_MaxEnergyUnit = i_MaxEnergyUnit;
         }
 
-        public float Energy
-        {
-            set
-            {
-                if (value < k_MinToFill || value > m_MaxEnergyUnit)
-                {
-                    throw new ValueOutOfRangeException(k_MinToFill, m_MaxEnergyUnit);
-                }
-                m_MaxEnergyUnit = value;
-            }
-            get { return m_EnergyUnitLeft; }
-        }
+        //public float Energy
+        //{
+        //    //set
+        //    //{
+        //    //    if (value < k_MinToFill || value > m_MaxEnergyUnit)
+        //    //    {
+        //    //        throw new ValueOutOfRangeException("Can't charge this much energy,",k_MinToFill, m_MaxEnergyUnit);
+        //    //    }
+        //    //    m_MaxEnergyUnit = value;
+        //    //}
+        //    get { return m_EnergyUnitLeft; }
+        //}
 
         public void Fill(float i_AmoutToFill)
         {
-            if (EnergyUnitLeft + i_AmoutToFill <= MaxEnergyUnit)
+            if (m_EnergyUnitLeft + i_AmoutToFill <= m_MaxEnergyUnit)
             {
-                EnergyUnitLeft += i_AmoutToFill;
+                m_EnergyUnitLeft += i_AmoutToFill;
             }
             else
             {
-                float ableToFill = MaxEnergyUnit - m_EnergyUnitLeft;
+                float ableToFill = m_MaxEnergyUnit - m_EnergyUnitLeft;
                 throw new ValueOutOfRangeException(k_MinToFill, ableToFill);
             }
         }

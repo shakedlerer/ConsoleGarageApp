@@ -48,6 +48,52 @@ namespace Ex03.ConsoleUI
 
             return licenseNumber;
         }
+
+        public string GetPhoneNumber()
+        {
+            PrintMessage(Messages.EnterPhoneNumber);
+            string phoneNumber = GetInput();
+            int number;
+            bool validPhoneNumber = false;
+
+            while (!validPhoneNumber)
+            {
+
+                validPhoneNumber = int.TryParse(phoneNumber, out number);
+
+                if (!validPhoneNumber)
+                {
+                    PrintMessage(Messages.InvalidPhoneNumberError);
+                    phoneNumber = GetInput();
+                }
+            }
+            return phoneNumber;
+        }
+
+        public string GetOwnerName()
+        {
+            string ownerName = " ";
+            bool invalidOwnerName = false;
+
+            PrintMessage(Messages.EnterOwnerName);
+
+            while (!invalidOwnerName)
+            {
+                ownerName = GetInput();
+
+                foreach (char ch in ownerName)
+                {
+                    if (!char.IsLetter(ch))
+                    {
+                        PrintMessage(Messages.InvalidNameError);
+                        break;
+                    }
+                    invalidOwnerName = true;
+                }
+            }
+            return ownerName;
+        }
+
         public int GetOptionInput()
         {
             string inputStr = GetInput();
@@ -208,9 +254,9 @@ namespace Ex03.ConsoleUI
             PrintMessage(Messages.CarAlreadyInGarage);
         }
 
-        public string AskingNewStatusOfVehicle()
+        public string GetNewStatusOfVehicle()
         {
-            PrintMessage(Messages.AskingNewStatusOfVehicle);
+            PrintMessage(Messages.GetNewStatusOfVehicle);
 
             return GetInput();
         }

@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="InputValidator.cs" />
-    <Compile Include="IOhandler.cs" />
+    <Compile Include="App.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UI.cs" />
