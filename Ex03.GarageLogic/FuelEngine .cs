@@ -21,7 +21,14 @@ namespace Ex03.GarageLogic
         {
             if (r_FuelType == i_FuelType)
             {
-                base.Fill(i_AmoutOfLiters);
+                try {
+                    Fill(i_AmoutOfLiters);
+                }
+                catch (ValueOutOfRangeException e)
+                {
+                    string msg = "Can't fill this much Fuel";
+                    throw new ValueOutOfRangeException(msg, e.MinValue, e.MaxValue);
+                }
             }
             else
             {
@@ -65,9 +72,15 @@ Maximum amout of liters:{2}", r_FuelType, m_EnergyUnitLeft, m_MaxEnergyUnit);
 
         public float CurrentFuelCapacity
         {
-            set { base.Energy = value; }
-            get { return base.Energy; }
+            set { m_EnergyUnitLeft = value; }
+            get { return m_EnergyUnitLeft; }
         }
+
+        //public float EnergyUnitLeft
+        //{
+        //    get { return m_EnergyUnitLeft; }
+        //    set { m_EnergyUnitLeft = value; }
+        //}
 
     }
 }

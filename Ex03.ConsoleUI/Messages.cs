@@ -10,13 +10,13 @@ namespace Ex03.ConsoleUI
     {
         public static string
              AskingLicenseNumber = "Please Enter your License Number",
-             AskingAllOrByStatus = "Please enter Number in range of 1-3(1.In Progrees 2.Fixed 3.Paid ) if you want to see all press any other number",
-             AskingOptionOfMenu = "Please choose one of the option above",
+             ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)",
+             AskingOptionOfMenu = "Please choose one of the option below",
              AskingTypeOfFuel = string.Format("Please Choose the Type of fuel.{0}1-Octan95{0}2-Octan96{0}3-Octan98{0}4-Soler", Environment.NewLine),
              AskingAmountOfFuel = "Please enter the amount of fuel you want to fill",
              AskingAmountOfMinutes = "PLease enter the amount of minutes you want to load",
              CarAlreadyInGarage = "Your car is Already in the garage",
-             AskingNewStatusOfVehicle = string.Format("Please enter the new status you want for your vehicle.{0}1-In Repair{0}2-Repaired{0}3-Paid", Environment.NewLine),
+             GetNewStatusOfVehicle = string.Format("Please enter the new status you want for your vehicle", Environment.NewLine),
              WrongNumberOfTypeOfFuel = "Please enter Number in range of 1-4",
              WrongNumberOfOptionOfStatus = "Plase enter Number in Range of 1-3",
              FormatMessages = "You Entered not in context details,please enter again",
@@ -29,6 +29,9 @@ namespace Ex03.ConsoleUI
             InvalidOptionSelected = string.Format("Invalid Option entered, try again:{0}", Environment.NewLine),
             InvalidNumberEntered = string.Format("Invalid Option selected, please try again..{0}", Environment.NewLine),
             InputIsNotANumberError = string.Format("Input is not a number, please try again..{0}", Environment.NewLine),
+            InvalidPhoneNumberError = "Invalid phone number entered, please try again..",
+             VehicleDoesntExistError = "Vehicle does not exist in garage, please try again",
+             InvalidNameError = "Error: invalid Owner Name. please try again..",
             GarageMenu = string.Format(@"
 Welcome to our Garage:{0}
 1.Add New Car{0}

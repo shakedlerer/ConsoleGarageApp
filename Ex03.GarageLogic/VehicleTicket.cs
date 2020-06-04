@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Ex03.GarageLogic
 {
-    public class Record
+    public class VehicleTicket
     {
         private Vehicle m_Vehicle;
         private string m_PhoneNumber;
@@ -17,7 +17,7 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
 
         }
 
-        public Record(Vehicle i_Vehicle)
+        public VehicleTicket(Vehicle i_Vehicle)
         {
             m_Vehicle = i_Vehicle;
             m_VehicleStatus = eVehicleStatus.InProgress;
@@ -70,7 +70,7 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
             }
             get
             {
-                return m_PhoneNumber;
+                return m_OwnerName;
             }
         }
 

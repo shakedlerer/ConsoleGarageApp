@@ -19,7 +19,7 @@ Cargo capacity:{2}", base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);
         }
 
         public Truck(string i_LicenseNumber, Engine i_Engine,
-                     List<Wheel> i_Wheels) :
+                     List<Tire> i_Wheels) :
             base(i_LicenseNumber, i_Engine, i_Wheels)
         {
         }
@@ -33,10 +33,10 @@ Cargo capacity:{2}", base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);
             set { m_CargoCapacity = value; }
             get { return m_CargoCapacity; }
         }
-        public float CurrentEnergy
-        {
-            set { m_EnergyLeft = value; }
-        }
+        //public float CurrentEnergy
+        //{
+        //    set { m_EnergyLeft = value; }
+        //}
 
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-//using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
@@ -10,18 +7,18 @@ namespace Ex03.GarageLogic
     {
         private const int k_CarNumberOfWheels = 4;
         private const int k_BikeNumberOfWheels = 2;
-        private const int k_TruckNumberOfWheels = 12;
+        private const int k_TruckNumberOfWheels = 16;
 
-        private const float k_CarMaxPressure = 31f;
-        private const float k_BikeMaxPressure = 33f;
-        private const float k_TruckMaxPressure = 26f;
+        private const float k_CarMaxPressure = 32f;
+        private const float k_BikeMaxPressure = 30f;
+        private const float k_TruckMaxPressure = 28f;
 
-        private const float k_CarMaxElectricEngTime = 1.8f;
-        private const float k_BikeMaxElectricEngTime = 1.4f;
+        private const float k_CarMaxElectricEngTime = 2.1f;
+        private const float k_BikeMaxElectricEngTime = 1.2f;
 
-        private const int k_CarMaxFuelCapacity = 55;
-        private const int k_BikeMaxFuelCapacity = 8;
-        private const int k_TruckMaxFuelCapacity = 110;
+        private const int k_CarMaxFuelCapacity = 60;
+        private const int k_BikeMaxFuelCapacity = 7;
+        private const int k_TruckMaxFuelCapacity = 120;
 
         private const eFuelType k_CarFuelType = eFuelType.Octan96;
         private const eFuelType k_BikeFuelType = eFuelType.Octan95;
@@ -31,7 +28,7 @@ namespace Ex03.GarageLogic
         {
             Vehicle vehicle;
             Engine engine = null;
-            List<Wheel> wheels;
+            List<Tire> wheels;
             switch (i_VehicleType)
             {
                 case (eVehicleType.FuelCar):
@@ -48,7 +45,6 @@ namespace Ex03.GarageLogic
                     wheels = CreateWheels(k_BikeMaxPressure, k_BikeNumberOfWheels);
                     engine = new FuelEngine(k_BikeMaxFuelCapacity, k_BikeFuelType);
                     vehicle = new Bike(i_LicenseNumber, engine, wheels);
-
                     break;
                 case (eVehicleType.ElectricBike):
                     wheels = CreateWheels(k_BikeMaxPressure, k_BikeNumberOfWheels);
@@ -67,13 +63,13 @@ namespace Ex03.GarageLogic
 
             return vehicle;
         }
-        public List<Wheel> CreateWheels(float i_MaxPressure, int i_NumOfWheels)
+        public List<Tire> CreateWheels(float i_MaxPressure, int i_NumOfWheels)
         {
-            List<Wheel> wheels = new List<Wheel>(i_NumOfWheels);
+            List<Tire> wheels = new List<Tire>(i_NumOfWheels);
             for (int i = 0; i < i_NumOfWheels; i++)
             {
-                Wheel wheel = new Wheel(i_MaxPressure);
-                wheels.Add(wheel);
+                Tire tire = new Tire(i_MaxPressure);
+                wheels.Add(tire);
             }
 
             return wheels;
