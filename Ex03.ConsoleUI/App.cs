@@ -8,8 +8,17 @@ namespace Ex03.ConsoleUI
     public class App
     {
         //private readonly InputValidator r_Validator;
+        private const string k_ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)";
+        private const string k_SelectVehicleType = "Select vehicle type:";
+        private const string k_ShowLicenseNumbersList = "The desired vehicle's license numbers list is:";
         private readonly UI r_Ui;
         private readonly Garage r_Garage;
+        private readonly string r_AskingTypeOfFuel = string.Format(
+@"Please choose the Type of fuel.
+1 - Octan95
+2 - Octan96
+3 - Octan98
+4 - Soler");
 
         public App()
         {
@@ -94,9 +103,9 @@ namespace Ex03.ConsoleUI
         {
             const int k_AllVehicles = 4;
             string[] statusOptions = { "In Progress", "Fixed", "Paid", "All Vehicles" };
+            int option = r_Ui.GetNumberFromOptions(statusOptions, k_ShowVehiclesLicenseNumbers);
 
-            int option = r_Ui.GetNumberFromOptions(statusOptions, Messages.ShowVehiclesLicenseNumbers);
-
+            r_Ui.PrintMessage(k_ShowLicenseNumbersList);
             if (option == k_AllVehicles)
             {
                 ShowAllLicenseNumberVehicle();
@@ -180,6 +189,7 @@ namespace Ex03.ConsoleUI
             {
                 r_Garage.FillToMaximum(licenseNumber);
                 r_Ui.PrintMessage("Tires filled to max!");
+                r_Ui.PrintMessage("");
             }
             else
             {
@@ -221,7 +231,7 @@ namespace Ex03.ConsoleUI
             {
                 r_Ui.PrintMessage("Please enter desired fuel amount to fill:");
                 amountOfFuel = r_Ui.GetFloatInput();
-                r_Ui.PrintMessage(Messages.AskingTypeOfFuel);
+                r_Ui.PrintMessage(r_AskingTypeOfFuel);
                 typeOfFuel = r_Ui.GetIntInRange(1, 4);
                 r_Garage.FillFuel(licenseNumber, amountOfFuel, (VehiclesEnums.eFuelType)typeOfFuel);
             }
@@ -260,7 +270,7 @@ namespace Ex03.ConsoleUI
             if (vehicleExist)
             {
                 description = r_Garage.GetVehicleDescription(licenseNumber);
-                r_Ui.PrintMessage(description);
+                r_Ui.PrintMessageWithoutNewLine(description);
             }
             else
             {
@@ -308,6 +318,7 @@ namespace Ex03.ConsoleUI
                 UpdateVehicleTicket(vehicleTicket);
                 string errMsg = string.Format("Vehicle {0} was added successfully!", licenseNumber);
                 r_Ui.PrintMessage(errMsg);
+                r_Ui.PrintMessage("");
             }
         }
 
@@ -387,7 +398,6 @@ namespace Ex03.ConsoleUI
 
             string[] enumNames = Enum.GetNames(i_PropertyToSet.PropertyType);
             int selectedEnumNumber = r_Ui.GetNumberFromOptions(enumNames, title);
-
             i_PropertyToSet.SetValue(i_Vehicle, Enum.ToObject(fieldType, selectedEnumNumber), null);
         }
 
@@ -489,7 +499,7 @@ namespace Ex03.ConsoleUI
             VehiclesEnums.eVehicleType vehicleType;
             try
             {
-                vehicleType = GetEnumType<VehiclesEnums.eVehicleType>(Messages.SelectVehicleType);
+                vehicleType = GetEnumType<VehiclesEnums.eVehicleType>(k_SelectVehicleType);
             }
             catch (Exception ex)
             {

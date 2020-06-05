@@ -43,13 +43,13 @@ namespace Ex03.GarageLogic
         //    }
         //}
 
-        public void Fill(float i_AmoutOfLiters, VehiclesEnums.eFuelType i_FuelType)
+        public void Fill(float i_AmountOfLiters, VehiclesEnums.eFuelType i_FuelType)
         {
             if (r_FuelType == i_FuelType)
             {
                 try
                 {
-                    Fill(i_AmoutOfLiters);
+                    Fill(i_AmountOfLiters);
                 }
                 catch (ValueOutOfRangeException e)
                 {
@@ -67,9 +67,9 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             return string.Format(@"Fuel engine
-FuelType:{0}
-Current amout of liters:{1}
-Maximum amout of liters:{2}", r_FuelType, m_EnergyUnitLeft, m_MaxEnergyUnit);
+FuelType: {0}
+Current amount of liters: {1}
+Maximum amount of liters: {2}", r_FuelType, m_EnergyUnitLeft, m_MaxEnergyUnit);
 
         }
 
