@@ -6,7 +6,9 @@ namespace Ex03.GarageLogic
         private Vehicle m_Vehicle;
         private string m_PhoneNumber;
         private string m_OwnerName;
-        private eVehicleStatus m_VehicleStatus;
+        //private eVehicleStatus m_VehicleStatus;
+        private VehiclesEnums.eVehicleStatus m_VehicleStatus;
+
 
         public override string ToString()
         {
@@ -17,13 +19,25 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
 
         }
 
+        //public VehicleTicket(Vehicle i_Vehicle)
+        //{
+        //    m_Vehicle = i_Vehicle;
+        //    m_VehicleStatus = eVehicleStatus.InProgress;
+        //}
+
         public VehicleTicket(Vehicle i_Vehicle)
         {
             m_Vehicle = i_Vehicle;
-            m_VehicleStatus = eVehicleStatus.InProgress;
+            m_VehicleStatus = VehiclesEnums.eVehicleStatus.InProgress;
         }
 
-        public eVehicleStatus Status
+        //public eVehicleStatus Status
+        //{
+        //    set { m_VehicleStatus = value; }
+        //    get { return m_VehicleStatus; }
+        //}
+
+        public VehiclesEnums.eVehicleStatus Status
         {
             set { m_VehicleStatus = value; }
             get { return m_VehicleStatus; }

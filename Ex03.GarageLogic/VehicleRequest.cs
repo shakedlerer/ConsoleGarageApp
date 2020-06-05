@@ -13,27 +13,37 @@ namespace Ex03.GarageLogic
         private float m_EnergyLeft;
         private int m_NumberOfWheels;
         private Engine m_Engine;
-        private eFuelType m_FuelType;
         private float m_CurrentFuelCapacity;
         private float m_HoursLeft;
-        private eColor m_Color;
-        private eNumberOfDoors m_NumberOfDoors;
         private bool v_IsHoldsDangerCargo;
         private float m_CargoCapacity;
-        private eBikeLicenseType m_LicenseBikeType;
         private int m_EngineBikeCapaicty;
         public bool[] m_CheckedList = new bool[9];
+
+        // Change direct access to eFuel Type to access through VehiclesEnums
+        //private eFuelType m_FuelType;
+        private VehiclesEnums.eFuelType m_FuelType;
+        //private eColor m_Color;
+        private VehiclesEnums.eColor m_Color;
+        //private eNumberOfDoors m_NumberOfDoors;
+        private VehiclesEnums.eNumberOfDoors m_NumberOfDoors;
+        //private eBikeLicenseType m_LicenseBikeType;
+        private VehiclesEnums.eBikeLicenseType m_LicenseBikeType;
 
         public float CurrentFuelCapacity
         {
             get { return m_CurrentFuelCapacity; }
         }
 
-        public eFuelType FuelType
+        //public eFuelType FuelType
+        //{
+        //    get { return m_FuelType; }
+        //}
+
+        public VehiclesEnums.eFuelType FuelType
         {
             get { return m_FuelType; }
         }
-
 
         public void AnyVehicle(string i_ModelNAme, string i_LicenseNumber, float i_EnergyLeft
              , int i_NumberOfWheels, Engine i_Engine)
@@ -45,7 +55,15 @@ namespace Ex03.GarageLogic
             m_Engine = i_Engine;
         }
 
-        public void FuelVehicle(eFuelType i_FuelType, float i_CurrentFuelCapacity)
+        //public void FuelVehicle(eFuelType i_FuelType, float i_CurrentFuelCapacity)
+        //{
+        //    m_FuelType = i_FuelType;
+        //    m_CurrentFuelCapacity = i_CurrentFuelCapacity;
+        //    m_CheckedList[0] = true;
+        //    m_CheckedList[1] = true;
+        //}
+
+        public void FuelVehicle(VehiclesEnums.eFuelType i_FuelType, float i_CurrentFuelCapacity)
         {
             m_FuelType = i_FuelType;
             m_CurrentFuelCapacity = i_CurrentFuelCapacity;
@@ -59,7 +77,15 @@ namespace Ex03.GarageLogic
             m_CheckedList[2] = true;
         }
 
-        public void CarVehicle(eColor i_Color, eNumberOfDoors i_NumberOfDoors)
+        //public void CarVehicle(eColor i_Color, eNumberOfDoors i_NumberOfDoors)
+        //{
+        //    m_Color = i_Color;
+        //    m_NumberOfDoors = i_NumberOfDoors;
+        //    m_CheckedList[3] = true;
+        //    m_CheckedList[4] = true;
+        //}
+
+        public void CarVehicle(VehiclesEnums.eColor i_Color, VehiclesEnums.eNumberOfDoors i_NumberOfDoors)
         {
             m_Color = i_Color;
             m_NumberOfDoors = i_NumberOfDoors;
@@ -75,7 +101,15 @@ namespace Ex03.GarageLogic
             m_CheckedList[6] = true;
         }
 
-        public void BikeVehicle(eBikeLicenseType i_LicenseBikeType, int i_EngineBikeCapaicty)
+        //public void BikeVehicle(eBikeLicenseType i_LicenseBikeType, int i_EngineBikeCapaicty)
+        //{
+        //    m_LicenseBikeType = i_LicenseBikeType;
+        //    m_EngineBikeCapaicty = i_EngineBikeCapaicty;
+        //    m_CheckedList[7] = true;
+        //    m_CheckedList[8] = true;
+        //}
+
+        public void BikeVehicle(VehiclesEnums.eBikeLicenseType i_LicenseBikeType, int i_EngineBikeCapaicty)
         {
             m_LicenseBikeType = i_LicenseBikeType;
             m_EngineBikeCapaicty = i_EngineBikeCapaicty;
@@ -98,12 +132,22 @@ namespace Ex03.GarageLogic
             get { return m_HoursLeft; }
         }
 
-        public eColor CarColor
+        //public eColor CarColor
+        //{
+        //    get { return m_Color; }
+        //}
+
+        public VehiclesEnums.eColor CarColor
         {
             get { return m_Color; }
         }
 
-        public eNumberOfDoors NumberOfDoors
+        //public eNumberOfDoors NumberOfDoors
+        //{
+        //    get { return m_NumberOfDoors; }
+        //}
+
+        public VehiclesEnums.eNumberOfDoors NumberOfDoors
         {
             get { return m_NumberOfDoors; }
         }
@@ -118,7 +162,12 @@ namespace Ex03.GarageLogic
             get { return m_CargoCapacity; }
         }
 
-        public eBikeLicenseType LicenseBikeType
+        //public eBikeLicenseType LicenseBikeType
+        //{
+        //    get { return m_LicenseBikeType; }
+        //}
+
+        public VehiclesEnums.eBikeLicenseType LicenseBikeType
         {
             get { return m_LicenseBikeType; }
         }
