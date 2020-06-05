@@ -21,7 +21,13 @@ namespace Ex03.GarageLogic
             return m_Vehicles.ContainsKey(i_LicenseId);
         }
 
-        public void FillFuel(string i_LicenseId, float i_amountOfFuel, eFuelType i_typeOfFuel)
+        //public void FillFuel(string i_LicenseId, float i_amountOfFuel, eFuelType i_typeOfFuel)
+        //{
+        //    FuelEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as FuelEngine;
+        //    eng.Fill(i_amountOfFuel, i_typeOfFuel);
+        //}
+
+        public void FillFuel(string i_LicenseId, float i_amountOfFuel, VehiclesEnums.eFuelType i_typeOfFuel)
         {
             FuelEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as FuelEngine;
             eng.Fill(i_amountOfFuel, i_typeOfFuel);
@@ -29,7 +35,7 @@ namespace Ex03.GarageLogic
 
         public void FillElectric(string i_LicenseId, int i_amountOfMinutes)
         {
-            float toHour = (i_amountOfMinutes / 60f); //+ ((i_amountOfMinutes % 60)/60f);
+            float toHour = (i_amountOfMinutes / 60f);
             ElectricEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as ElectricEngine;
             eng.FillEnergy(toHour);
         }
@@ -41,7 +47,7 @@ namespace Ex03.GarageLogic
 
         public void FillToMaximum(string i_LicenseId)
         {
-            m_Vehicles[i_LicenseId].Vehicle.FillAllWhellsToMaximum();
+            m_Vehicles[i_LicenseId].Vehicle.FillAllTiresToMaximum();
         }
 
         public void AddNewVehicle(VehicleTicket i_NewVehicleTicket)
@@ -63,7 +69,23 @@ namespace Ex03.GarageLogic
             return sb;
         }
 
-        public StringBuilder AllLicenseNumbersByStatus(eVehicleStatus i_VehicleStatus)
+        //public StringBuilder AllLicenseNumbersByStatus(eVehicleStatus i_VehicleStatus)
+        //{
+        //    StringBuilder sb = new StringBuilder();
+
+        //    foreach (KeyValuePair<string, VehicleTicket> record in m_Vehicles)
+        //    {
+        //        if (record.Value.Status == i_VehicleStatus)
+        //        {
+        //            sb.Append(record.Key);
+        //            sb.Append(Environment.NewLine);
+        //        }
+        //    }
+
+        //    return sb;
+        //}
+
+        public StringBuilder AllLicenseNumbersByStatus(VehiclesEnums.eVehicleStatus i_VehicleStatus)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -75,13 +97,21 @@ namespace Ex03.GarageLogic
                     sb.Append(Environment.NewLine);
                 }
             }
-
             return sb;
         }
 
-        public VehicleTicket AddNewVehicle(string i_LicenseNumber, eVehicleType i_VehicleType)
+        //public VehicleTicket AddNewVehicle(string i_LicenseNumber, eVehicleType i_VehicleType)
+        //{
+        //    Vehicle vehicle = m_Factory.CreateNewCarOfType(i_VehicleType, i_LicenseNumber);
+        //    VehicleTicket newVehicleTicket = new VehicleTicket(vehicle);
+        //    m_Vehicles.Add(vehicle.License, newVehicleTicket);
+
+        //    return newVehicleTicket;
+        //}
+
+        public VehicleTicket AddNewVehicle(string i_LicenseNumber, VehiclesEnums.eVehicleType i_VehicleType)
         {
-            Vehicle vehicle = m_Factory.CreateNewCarOfType(i_VehicleType, i_LicenseNumber);
+            Vehicle vehicle = m_Factory.CreateNewVehicleOfType(i_VehicleType, i_LicenseNumber);
             VehicleTicket newVehicleTicket = new VehicleTicket(vehicle);
             m_Vehicles.Add(vehicle.License, newVehicleTicket);
 
@@ -96,12 +126,22 @@ namespace Ex03.GarageLogic
             return newVehicleTicket;
         }
 
+        //public void setInProgressStatus(string i_LicenseId)
+        //{
+        //    UpdateVehicleStatus(i_LicenseId, eVehicleStatus.InProgress);
+        //}
+
         public void setInProgressStatus(string i_LicenseId)
         {
-            UpdateVehicleStatus(i_LicenseId, eVehicleStatus.InProgress);
+            UpdateVehicleStatus(i_LicenseId, VehiclesEnums.eVehicleStatus.InProgress);
         }
 
-        public void UpdateVehicleStatus(string i_LicenseId, eVehicleStatus i_NewStatus)
+        //public void UpdateVehicleStatus(string i_LicenseId, eVehicleStatus i_NewStatus)
+        //{
+        //    m_Vehicles[i_LicenseId].Status = i_NewStatus;
+        //}
+
+        public void UpdateVehicleStatus(string i_LicenseId, VehiclesEnums.eVehicleStatus i_NewStatus)
         {
             m_Vehicles[i_LicenseId].Status = i_NewStatus;
         }

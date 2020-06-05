@@ -48,6 +48,7 @@
     <Compile Include="eVehicleType.cs" />
     <Compile Include="FuelEngine .cs" />
     <Compile Include="Garage.cs" />
+    <Compile Include="VehiclesEnums.cs" />
     <Compile Include="VehicleTicket.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="ValueOutOfRangeException.cs" />

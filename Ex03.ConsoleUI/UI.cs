@@ -8,19 +8,12 @@ namespace Ex03.ConsoleUI
 {
     public class UI
     {
+
+        ////////////////////////////////////////////////////////
+        // Get input from user
         public string GetInput()
         {
             return Console.ReadLine();
-        }
-
-        public void PrintMenu()
-        {
-            Console.WriteLine(Messages.GarageMenu);
-        }
-
-        public void PrintMessage(string i_MessageToPrint)
-        {
-            Console.WriteLine(i_MessageToPrint);
         }
 
         public int GetNumberFromOptions(string[] i_Options, string i_Title)
@@ -32,19 +25,25 @@ namespace Ex03.ConsoleUI
             return selectedNumber;
         }
 
-        public void ShowStringOptions(string[] i_Options)
-        {
-            for (int i = 0; i < i_Options.Length; i++)
-            {
-                string option = string.Format("{0} - {1}{2}", i + 1, i_Options[i], Environment.NewLine);
-                PrintMessage(option);
-            }
-        }
 
         public string GetLicenseNumber()
         {
             PrintMessage(Messages.AskingLicenseNumber);
             string licenseNumber = GetInput();
+            int number;
+
+            bool validLicenseNumber = false;
+
+            while (!validLicenseNumber)
+            {
+                validLicenseNumber = int.TryParse(licenseNumber, out number);
+
+                if (!validLicenseNumber)
+                {
+                    PrintMessage(Messages.InvalidPhoneNumberError);
+                    licenseNumber = GetInput();
+                }
+            }
 
             return licenseNumber;
         }
@@ -58,7 +57,6 @@ namespace Ex03.ConsoleUI
 
             while (!validPhoneNumber)
             {
-
                 validPhoneNumber = int.TryParse(phoneNumber, out number);
 
                 if (!validPhoneNumber)
@@ -116,7 +114,7 @@ namespace Ex03.ConsoleUI
 
             bool inputIOnRange = selectedNumber >= i_Min && selectedNumber <= i_Max;
 
-            while(!inputIOnRange)
+            while (!inputIOnRange)
             {
                 PrintMessage(Messages.InvalidOptionSelected);
                 selectedNumber = GetIntNumber();
@@ -153,12 +151,12 @@ namespace Ex03.ConsoleUI
             {
                 inputNumber = getNumberFromUser();
             }
-            catch(FormatException e)
+            catch (FormatException e)
             {
                 PrintMessage(Messages.InputIsNotANumberError);
                 inputNumber = GetIntNumber();
             }
-            
+
 
             //string inputStr = GetInput();
             //int inputNum;
@@ -198,6 +196,29 @@ namespace Ex03.ConsoleUI
                 return inputNum;
             }
         }
+
+        ////////////////////////////////////////////////////////
+        // Print output to user
+
+        public void PrintMenu()
+        {
+            Console.WriteLine(Messages.GarageMenu);
+        }
+
+        public void PrintMessage(string i_MessageToPrint)
+        {
+            Console.WriteLine(i_MessageToPrint);
+        }
+
+        public void ShowStringOptions(string[] i_Options)
+        {
+            for (int i = 0; i < i_Options.Length; i++)
+            {
+                string option = string.Format("{0} - {1}{2}", i + 1, i_Options[i], Environment.NewLine);
+                PrintMessage(option);
+            }
+        }
+
         public void ShowOptionFromArray(string i_Message, System.Array i_Options)
         {
             PrintMessage(i_Message);
@@ -208,6 +229,10 @@ namespace Ex03.ConsoleUI
             }
         }
 
+
+        ////////////////////////////////////////////////////////
+        // GRAY METHODS, CHECK IF SOMEONE USES THEM AT ALL --> IF NOT (AND IF THEY ARE REALLY NOT NEEDED), WE CAN DELETE THEM
+
         public void ShowOptions<T>(string i_Message, string[] i_Options)
         {
             PrintMessage(i_Message);
@@ -217,16 +242,6 @@ namespace Ex03.ConsoleUI
                 PrintMessage(option);
             }
         }
-
-        //public void ShowOptions<T>(string i_Message, List<T> i_Options)
-        //{
-        //    PrintMessage(i_Message);
-        //    for (int i = 0; i < i_Options.Count; i++)
-        //    {
-        //        string option = string.Format("{0} - {1}{2}", i + 1, i_Options[i], Environment.NewLine);
-        //        PrintMessage(option);
-        //    }
-        //}
 
         public string AskingTypeOfFuel()
         {

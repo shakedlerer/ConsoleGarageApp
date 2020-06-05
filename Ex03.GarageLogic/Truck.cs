@@ -10,6 +10,9 @@ namespace Ex03.GarageLogic
     {
         private bool m_IsHoldsDangerCargo;
         private float m_CargoCapacity;
+        private const int k_TruckNumberOfWheels = 16;
+        private const float k_TruckMaxPressure = 28f;
+
 
         public override string ToString()
         {
@@ -18,10 +21,15 @@ Holds Danager Cargo:{1}
 Cargo capacity:{2}", base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);
         }
 
-        public Truck(string i_LicenseNumber, Engine i_Engine,
-                     List<Tire> i_Wheels) :
-            base(i_LicenseNumber, i_Engine, i_Wheels)
+        //public Truck(string i_LicenseNumber, Engine i_Engine,
+        //             List<Tire> i_Wheels) :
+        //    base(i_LicenseNumber, i_Engine, i_Wheels)
+        //{
+        //}
+
+        public Truck(string i_LicenseNumber, Engine i_Engine) : base(i_LicenseNumber, i_Engine)
         {
+            initializeWheels(k_TruckMaxPressure, k_TruckNumberOfWheels);
         }
 
         public bool IsHoldsDangerCargo

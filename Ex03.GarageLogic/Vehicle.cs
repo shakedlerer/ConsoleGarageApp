@@ -11,27 +11,52 @@ namespace Ex03.GarageLogic
         protected string m_ModelName;
         protected readonly string r_LicenseNumber;
         //protected float m_EnergyLeft;
-        protected readonly List<Tire> r_CollectionOfWheels;
-        protected Engine r_Engine;
+        protected List<Tire> m_SetOfTires;
+        protected Engine m_Engine;
 
-        public void FillAllWhellsToMaximum()
+        //public Vehicle(string i_LicenseNumber, Engine i_Engine, List<Tire> i_Wheels)
+        //{
+        //    r_LicenseNumber = i_LicenseNumber;
+        //    m_Engine = i_Engine;
+        //    m_SetOfTires = i_Wheels;
+        //}
+
+        public Vehicle(string i_LicenseNumber, Engine i_Engine)
         {
-            foreach (Tire wheel in r_CollectionOfWheels)
+            r_LicenseNumber = i_LicenseNumber;
+            m_Engine = i_Engine;
+        }
+
+        protected void initializeWheels(float i_MaxPressure, int i_NumOfWheels)
+        {
+            m_SetOfTires = new List<Tire>(i_NumOfWheels);
+
+            for (int i = 0; i < i_NumOfWheels; i++)
+            {
+                Tire tire = new Tire(i_MaxPressure);
+                m_SetOfTires.Add(tire);
+            }
+        }
+
+        public void FillAllTiresToMaximum()
+        {
+            foreach (Tire wheel in m_SetOfTires)
             {
                 wheel.FillToMaximum();
             }
         }
         public void SetWheelsPressure(float i_PressureToSet)
         {
-            foreach (Tire wheel in r_CollectionOfWheels)
+            foreach (Tire wheel in m_SetOfTires)
             {
                 wheel.AirPressure = i_PressureToSet;
             }
         }
 
+        // TODO: What does this method do ?
         public void SetWheelsManufactory(string i_ManufactoryName)
         {
-            foreach (Tire wheel in r_CollectionOfWheels)
+            foreach (Tire wheel in m_SetOfTires)
             {
                 wheel.ManufactoryName = i_ManufactoryName;
             }
@@ -44,17 +69,12 @@ namespace Ex03.GarageLogic
 //License Number:{1}
 //Energy Left:{2}
 //{3}
-//{4}", m_ModelName, r_LicenseNumber, r_Engine.EnergyUnitLeft, r_CollectionOfWheels[0].ToString(), r_Engine.ToString());
+//{4}", m_ModelName, r_LicenseNumber, m_Engine.EnergyUnitLeft, m_SetOfTires[0].ToString(), m_Engine.ToString());
 
 
 //        }
 
-        public Vehicle(string i_LicenseNumber, Engine i_Engine, List<Tire> i_Wheels)
-        {
-            r_LicenseNumber = i_LicenseNumber;
-            r_Engine = i_Engine;
-            r_CollectionOfWheels = i_Wheels;
-        }
+
 
         public string ModelName
         {
@@ -64,15 +84,15 @@ namespace Ex03.GarageLogic
 
         //private float getEnergyLeft()
         //{
-        //    return r_Engine.EnergyUnitLeft;
+        //    return m_Engine.EnergyUnitLeft;
         //}
 
         public float CurrentEnergy
         {
-            set { r_Engine.EnergyUnitLeft = value; }
+            set { m_Engine.EnergyUnitLeft = value; }
             get
             {
-                return r_Engine.EnergyUnitLeft;
+                return m_Engine.EnergyUnitLeft;
             }
         }
 
@@ -83,30 +103,30 @@ namespace Ex03.GarageLogic
 
         public int NumOfWheels
         {
-            get { return r_CollectionOfWheels.Count; }
+            get { return m_SetOfTires.Count; }
         }
 
         public float MaxWheelsPressure
         {
-            get { return r_CollectionOfWheels[0].MaxAirPressure; }
+            get { return m_SetOfTires[0].MaxAirPressure; }
         }
 
         public Engine Engine
         {
-            get { return r_Engine; }
-            set { r_Engine = value; }
+            get { return m_Engine; }
+            set { m_Engine = value; }
         }
 
         public void Fill(float i_ToFill)
         {
-            r_Engine.Fill(i_ToFill);
+            m_Engine.Fill(i_ToFill);
         }
         public float CurrentAirInWheels
         {
             set { SetWheelsPressure(value); }
             get
             {
-                return r_CollectionOfWheels[0].AirPressure;
+                return m_SetOfTires[0].AirPressure;
             }
         }
         public string ManufactoryName
