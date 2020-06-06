@@ -8,18 +8,17 @@ namespace Ex03.ConsoleUI
     public class App
     {
         //private readonly InputValidator r_Validator;
-        private const string k_ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)";
-        private const string k_SelectVehicleType = "Select vehicle type:";
-        private const string k_ShowLicenseNumbersList = "The desired vehicle's license numbers list is:";
+
         private readonly UI r_Ui;
         private readonly Garage r_Garage;
         // try to do this with 'GetNumberFromOptions' method in UI
-        private readonly string r_AskingTypeOfFuel = string.Format(
-@"Please choose the Type of fuel.
-1 - Octan95
-2 - Octan96
-3 - Octan98
-4 - Soler");
+
+//        private readonly string r_AskingTypeOfFuel = string.Format(
+//@"Please choose the Type of fuel.
+//1 - Octan95
+//2 - Octan96
+//3 - Octan98
+//4 - Soler");
 
         public App()
         {
@@ -78,18 +77,20 @@ namespace Ex03.ConsoleUI
                     break;
 
                 default:
-                    string errMsg = string.Format("Error: Invalid option {0} was entered", i_Selection);
+                    string errMsg = string.Format("Error: Invalid option {0} was entered {1}", i_Selection, Environment.NewLine);
                     throw new FormatException(errMsg);
             }
         }
 
         public void ShowVehiclesLicenseNumbers()
         {
+            const string k_ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)";
+            const string k_ShowLicenseNumbersList = "The desired vehicle's license numbers list is:";
             const int k_AllVehicles = 4;
-            string[] statusOptions = { "In Progress", "Fixed", "Paid", "All Vehicles" };
+            string[] statusOptions = Enum.GetNames(typeof(VehiclesEnums.eVehicleStatus));
             int option = r_Ui.GetNumberFromOptions(statusOptions, k_ShowVehiclesLicenseNumbers);
 
-            r_Ui.PrintMessage(k_ShowLicenseNumbersList);
+            r_Ui.PrintMessage(k_ShowLicenseNumbersList + Environment.NewLine);
             if (option == k_AllVehicles)
             {
                 ShowAllLicenseNumberVehicle();
@@ -98,6 +99,7 @@ namespace Ex03.ConsoleUI
             {
                 ShowLicenseNumberByStatus((VehiclesEnums.eVehicleStatus)option);
             }
+            r_Ui.PrintMessage(Environment.NewLine + Environment.NewLine);
         }
 
         public void ShowAllLicenseNumberVehicle()
@@ -130,7 +132,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                string errMsg = string.Format("Vehicle {0} doesn't exist in the garage", licenseNumber);
+                string errMsg = string.Format("Vehicle {0} doesn't exist in the garage {1}{1}{1}", licenseNumber, Environment.NewLine);
                 throw new ArgumentException(errMsg);
             }
         }
@@ -144,12 +146,11 @@ namespace Ex03.ConsoleUI
             if (vehicleExist)
             {
                 r_Garage.FillToMaximum(licenseNumber);
-                r_Ui.PrintMessage("Tires filled to max!");
-                r_Ui.PrintMessage("");
+                r_Ui.PrintMessage("Tires filled to max!" + Environment.NewLine + Environment.NewLine + Environment.NewLine);
             }
             else
             {
-                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage {1}{1}{1}", licenseNumber, Environment.NewLine);
                 throw new ArgumentException(errMsg);
             }
         }
@@ -160,18 +161,18 @@ namespace Ex03.ConsoleUI
             int typeOfFuel;
             string licenseNumber = r_Ui.GetLicenseNumber();
             bool vehicleExist = r_Garage.VehicleExistInGarage(licenseNumber);
-            
+            string[] fuelTypes = Enum.GetNames(typeof(VehiclesEnums.eFuelType));
+
             if (vehicleExist)
             {
-                r_Ui.PrintMessage("Please enter desired fuel amount to fill:");
+                r_Ui.PrintMessage("Please enter desired fuel amount to fill:" + Environment.NewLine);
                 amountOfFuel = r_Ui.GetFloatInput();
-                r_Ui.PrintMessage(r_AskingTypeOfFuel);
-                typeOfFuel = r_Ui.GetNumberInRange(1, 4);
+                typeOfFuel = r_Ui.GetNumberFromOptions(fuelTypes, "Please choose fuel type:");
                 r_Garage.FillFuel(licenseNumber, amountOfFuel, (VehiclesEnums.eFuelType)typeOfFuel);
             }
             else
             {
-                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage {1}{1}{1}", licenseNumber, Environment.NewLine);
                 throw new ArgumentException(errMsg);
             }
         }
@@ -184,13 +185,13 @@ namespace Ex03.ConsoleUI
 
             if (vehicleExist)
             {
-                r_Ui.PrintMessage("Please enter charging time, in minutes:");
+                r_Ui.PrintMessage("Please enter charging time, in minutes:" + Environment.NewLine);
                 amountOfMinutes = r_Ui.GetIntInput();
                 r_Garage.FillElectric(licenseNumber, amountOfMinutes);
             }
             else
             {
-                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage {1}{1}{1}", licenseNumber, Environment.NewLine);
                 throw new ArgumentException(errMsg);
             }
         }
@@ -200,15 +201,14 @@ namespace Ex03.ConsoleUI
             string description;
             string licenseNumber = r_Ui.GetLicenseNumber();
             bool vehicleExist = r_Garage.VehicleExistInGarage(licenseNumber);
-
             if (vehicleExist)
             {
                 description = r_Garage.GetVehicleDescription(licenseNumber);
-                r_Ui.PrintMessageWithoutNewLine(description);
+                r_Ui.PrintMessage(description + Environment.NewLine + Environment.NewLine);
             }
             else
             {
-                string errMsg = string.Format("Vehicle {0} is not existing in the garage", licenseNumber);
+                string errMsg = string.Format("Vehicle {0} is not existing in the garage {1}{1}{1}", licenseNumber, Environment.NewLine);
                 throw new ArgumentException(errMsg);
             }
         }
@@ -222,7 +222,7 @@ namespace Ex03.ConsoleUI
             {
                 r_Garage.setInProgressStatus(licenseNumber);
                 string errMsg = string.Format("Vehicle {0} is already in the Garage, status updated to InProgress..", licenseNumber);
-                r_Ui.PrintMessage(errMsg);
+                r_Ui.PrintMessage(errMsg + Environment.NewLine + Environment.NewLine + Environment.NewLine);
             }
             else
             {
@@ -230,9 +230,7 @@ namespace Ex03.ConsoleUI
                 VehicleTicket vehicleTicket = r_Garage.AddNewVehicle(licenseNumber, vehicleType);
                 UpdateVehicleTicket(vehicleTicket);
                 string errMsg = string.Format("Vehicle {0} was added successfully!", licenseNumber);
-                r_Ui.PrintMessage(errMsg);
-                r_Ui.PrintMessage("");
-                r_Ui.PrintMessage("");
+                r_Ui.PrintMessage(errMsg + Environment.NewLine + Environment.NewLine + Environment.NewLine);
             }
         }
 
@@ -315,12 +313,13 @@ namespace Ex03.ConsoleUI
             string[] enumNames = Enum.GetNames(i_PropertyToSet.PropertyType);
             int selectedEnumNumber = r_Ui.GetNumberFromOptions(enumNames, title);
             i_PropertyToSet.SetValue(i_Vehicle, Enum.ToObject(fieldType, selectedEnumNumber), null);
+
         }
 
         private void setBooleanProperty(PropertyInfo i_PropertyToSet, Vehicle i_Vehicle)
         {
             string title = string.Format("Select the value for field - {0}:", i_PropertyToSet.Name);
-            r_Ui.PrintMessage(title);
+            r_Ui.PrintMessage(title + Environment.NewLine);
             bool boolValue = r_Ui.GetBoolInput();
             i_PropertyToSet.SetValue(i_Vehicle, boolValue, null);
         }
@@ -328,7 +327,7 @@ namespace Ex03.ConsoleUI
         private void setFloatProperty(PropertyInfo i_PropertyToSet, Vehicle i_Vehicle)
         {
             string title = string.Format("Select the value for field - {0}:", i_PropertyToSet.Name);
-            r_Ui.PrintMessage(title);
+            r_Ui.PrintMessage(title + Environment.NewLine);
             float floatValue = r_Ui.GetFloatInput();
             i_PropertyToSet.SetValue(i_Vehicle, floatValue, null);
         }
@@ -336,7 +335,7 @@ namespace Ex03.ConsoleUI
         private void setIntProperty(PropertyInfo i_PropertyToSet, Vehicle i_Vehicle)
         {
             string title = string.Format("Select the value for field - {0}:", i_PropertyToSet.Name);
-            r_Ui.PrintMessage(title);
+            r_Ui.PrintMessage(title + Environment.NewLine);
             int intValue = r_Ui.GetIntInput();
             i_PropertyToSet.SetValue(i_Vehicle, intValue, null);
         }
@@ -344,17 +343,19 @@ namespace Ex03.ConsoleUI
         private void setStringProperty(PropertyInfo i_PropertyToSet, Vehicle i_Vehicle)
         {
             string title = string.Format("Enter the value for field - {0}:", i_PropertyToSet.Name);
-            r_Ui.PrintMessage(title);
+            r_Ui.PrintMessage(title + Environment.NewLine);
             string strValue = r_Ui.GetStringInput();
             i_PropertyToSet.SetValue(i_Vehicle, strValue, null);
         }
 
         public VehiclesEnums.eVehicleType GetVehicleType()
         {
+            const string k_SelectVehicleType = "Select vehicle type:";
             VehiclesEnums.eVehicleType vehicleType;
+
             try
             {
-                vehicleType = GetEnumType<VehiclesEnums.eVehicleType>(Messages.SelectVehicleType);
+                vehicleType = GetEnumType<VehiclesEnums.eVehicleType>(k_SelectVehicleType);
             }
             catch (Exception ex)
             {

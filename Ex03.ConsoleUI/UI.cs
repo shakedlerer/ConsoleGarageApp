@@ -9,25 +9,9 @@ namespace Ex03.ConsoleUI
     public class UI
     {
         // SHAKED - try to put the unique msg inside their methods
-        private const string k_EnterOwnerName = "Enter Owner Name:";
-        private const string k_EnterPhoneNumber = "Enter Phone Number:";
-        private const string k_InvalidNameError = "Error: invalid Owner Name. please try again";
-        private const string k_InvalidPhoneNumberError = "Invalid phone number entered, please try again";
-        private const string k_InputIsNotANumberError = "Input is not a number, please try again..";
-        private const string k_AskingLicenseNumber = "Please Enter your License Number";
+
         //private const string k_AskingOptionOfMenu = "Please choose one of the option below";
-        private const string k_AskingAmountOfFuel = "Please enter the amount of fuel you want to fill";
-        private const string k_AskingAmountOfMinutes = "PLease enter the amount of minutes you want to load";
-        private const string k_CarAlreadyInGarage = "Your car is Already in the garage";
-        private const string k_GetNewStatusOfVehicle = "Please enter the new status you want for your vehicle";
-        private const string k_WrongNumberOfTypeOfFuel = "Please enter Number in range of 1-4";
-        private const string k_WrongNumberOfOptionOfStatus = "Please enter Number in Range of 1-3";
-        private const string k_FormatMessages = "You Entered not in context details,please enter again";
-        private const string k_WrongFuel = "The Fuel you entered is not sutibale to your vehicle,therefore we didnt fill your engine";
-        private const string k_TooMuchFuel = "You entered Too Much fuel,therefore we didnt fill your engine";
-        private const string k_TooMuchMinutes = "You entered Too Much Minutes,therefore we didnt fill your engine";
-        private const string k_InvalidNumberEntered = "Invalid Option selected, please try again";
-        private const string k_InvalidOptionSelected = "Invalid Option entered, please try again:";
+
         private readonly string k_GarageMenu = string.Format(
 @" --------------------------------------------------
 |              Welcome to our Garage:              |
@@ -47,8 +31,7 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine("><><><");
             string userInput = Console.ReadLine();
-            Console.WriteLine();
-            Console.WriteLine();
+            Console.WriteLine("{0}", Environment.NewLine);
             return userInput;
         }
 
@@ -57,7 +40,7 @@ namespace Ex03.ConsoleUI
             int selectedNumber;
             //PrintMessage(i_Title);
             // SHAKED try to solve
-            PrintMessageWithoutNewLine(i_Title);
+            PrintMessage(i_Title);
             ShowStringOptions(i_Options);
             selectedNumber = GetNumberInRange(1, i_Options.Length);
             return selectedNumber;
@@ -65,10 +48,12 @@ namespace Ex03.ConsoleUI
 
         public string GetLicenseNumber()
         {
+            const string k_InvalidPhoneNumberError = "Invalid Phone Number entered, please try again";
+            const string k_AskingLicenseNumber = "Please Enter your License Number";
             int number;
             bool validLicenseNumber = false;
 
-            PrintMessage(k_AskingLicenseNumber);
+            PrintMessage(k_AskingLicenseNumber + Environment.NewLine);
             string licenseNumber = GetStringInput();
 
             while (!validLicenseNumber)
@@ -77,7 +62,7 @@ namespace Ex03.ConsoleUI
 
                 if (!validLicenseNumber)
                 {
-                    PrintMessage(k_InvalidPhoneNumberError);
+                    PrintMessage(k_InvalidPhoneNumberError + Environment.NewLine);
                     licenseNumber = GetStringInput();
                 }
             }
@@ -87,19 +72,20 @@ namespace Ex03.ConsoleUI
 
         public string GetPhoneNumber()
         {
-            PrintMessage(k_EnterPhoneNumber);
-            string phoneNumber = GetStringInput();
-
+            const string k_EnterPhoneNumber = "Enter Phone Number:";
+            const string k_InvalidPhoneNumberError = "Invalid Phone Number entered, please try again";
             int number;
             bool validPhoneNumber = false;
-
+            PrintMessage(k_EnterPhoneNumber + Environment.NewLine);
+            string phoneNumber = GetStringInput();
+            
             while (!validPhoneNumber)
             {
                 validPhoneNumber = int.TryParse(phoneNumber, out number);
 
                 if (!validPhoneNumber)
                 {
-                    PrintMessage(k_InvalidPhoneNumberError);
+                    PrintMessage(k_InvalidPhoneNumberError + Environment.NewLine);
                     phoneNumber = GetStringInput();
                 }
             }
@@ -108,10 +94,12 @@ namespace Ex03.ConsoleUI
 
         public string GetOwnerName()
         {
+            const string k_EnterOwnerName = "Enter Owner Name:";
+            const string k_InvalidNameError = "Invalid Owner Name entered. please try again";
             string ownerName = " ";
             bool invalidOwnerName = false;
 
-            PrintMessage(k_EnterOwnerName);
+            PrintMessage(k_EnterOwnerName + Environment.NewLine);
 
             while (!invalidOwnerName)
             {
@@ -123,7 +111,7 @@ namespace Ex03.ConsoleUI
                     if(!char.IsLetter(ch))
                     {
                         invalidOwnerName = false;
-                        PrintMessage(k_InvalidNameError);
+                        PrintMessage(k_InvalidNameError + Environment.NewLine);
                         break;
                     }
                 }
@@ -133,12 +121,14 @@ namespace Ex03.ConsoleUI
 
         public int GetOptionInput()
         {
+            const string k_InvalidOptionSelected = "Invalid Option entered, please try again:";
             string inputStr = GetStringInput();
             int inputNum;
             bool isNumber = int.TryParse(inputStr, out inputNum);
+
             if (!isNumber)
             {
-                PrintMessage(k_InvalidOptionSelected);
+                PrintMessage(k_InvalidOptionSelected + Environment.NewLine);
                 return GetOptionInput();
             }
             else
@@ -149,13 +139,13 @@ namespace Ex03.ConsoleUI
 
         public int GetNumberInRange(int i_Min, int i_Max)
         {
+            const string k_InvalidOptionSelected = "Invalid Option entered, please try again:";
             int selectedNumber = GetIntInput();
-
             bool inputIOnRange = selectedNumber >= i_Min && selectedNumber <= i_Max;
 
             while (!inputIOnRange)
             {
-                PrintMessage(k_InvalidOptionSelected);
+                PrintMessage(k_InvalidOptionSelected + Environment.NewLine);
                 selectedNumber = GetIntInput();
                 inputIOnRange = selectedNumber >= i_Min && selectedNumber <= i_Max;
             }
@@ -209,6 +199,7 @@ namespace Ex03.ConsoleUI
 
         public int GetIntInput()
         {
+            const string k_InputIsNotANumberError = "Input is not a Number, please try again..";
             string inputStr;
             int inputNumber = 0;
             bool isNumber = false;
@@ -223,7 +214,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch (FormatException ex)
                 {
-                    PrintMessage(k_InputIsNotANumberError);
+                    PrintMessage(k_InputIsNotANumberError + Environment.NewLine);
                 }
             }
 
@@ -232,6 +223,7 @@ namespace Ex03.ConsoleUI
 
         public float GetFloatInput()
         {
+            const string k_InvalidNumberEntered = "Invalid Option selected, please try again";
             string inputStr;
             float inputFloat = 0;
             bool isFloat = false;
@@ -273,14 +265,9 @@ namespace Ex03.ConsoleUI
             Console.WriteLine(k_GarageMenu);
         }
 
-        public void PrintMessageWithoutNewLine(string i_MessageToPrint)
-        {
-            Console.Write(i_MessageToPrint);
-        }
-
         public void PrintMessage(string i_MessageToPrint)
         {
-            Console.WriteLine(i_MessageToPrint);
+            Console.Write(i_MessageToPrint);
         }
 
         public void ShowStringOptions(string[] i_Options)
@@ -288,9 +275,9 @@ namespace Ex03.ConsoleUI
             for (int i = 0; i < i_Options.Length; i++)
             {
                 string option = string.Format("{2}{0} - {1}", i + 1, i_Options[i], Environment.NewLine);
-                PrintMessageWithoutNewLine(option);
+                PrintMessage(option);
             }
-            Console.WriteLine();
+            PrintMessage(Environment.NewLine);
         }
 
         public void ShowOptionFromArray(string i_Message, System.Array i_Options)
@@ -324,65 +311,85 @@ namespace Ex03.ConsoleUI
 4 - Soler");
         public string AskingTypeOfFuel()
         {
-            PrintMessage(r_AskingTypeOfFuel);
+            PrintMessage(r_AskingTypeOfFuel + Environment.NewLine);
 
             return GetStringInput();
         }
 
         public string AskingAmountOfFuel()
         {
-            PrintMessage(k_AskingAmountOfFuel);
+            const string k_AskingAmountOfFuel = "Please enter the Amount Of Fuel you want to fill";
+
+            PrintMessage(k_AskingAmountOfFuel + Environment.NewLine);
 
             return GetStringInput();
         }
 
         public string AskingAmountOfMinutes()
         {
-            PrintMessage(k_AskingAmountOfMinutes);
+            const string k_AskingAmountOfMinutes = "PLease enter the Amount Of Minutes you want to load";
+
+            PrintMessage(k_AskingAmountOfMinutes + Environment.NewLine);
 
             return GetStringInput();
         }
 
         public void CarAlreadyInGarage()
         {
-            PrintMessage(k_CarAlreadyInGarage);
+            const string k_CarAlreadyInGarage = "Your car is Already in the garage";
+
+            PrintMessage(k_CarAlreadyInGarage + Environment.NewLine);
         }
 
         public string GetNewStatusOfVehicle()
         {
-            PrintMessage(k_GetNewStatusOfVehicle);
+            const string k_GetNewStatusOfVehicle = "Please enter the New Status you want for your vehicle";
+
+            PrintMessage(k_GetNewStatusOfVehicle + Environment.NewLine);
 
             return GetStringInput();
         }
 
         public void WrongNumberOfTypeOfFuel()
         {
-            PrintMessage(k_WrongNumberOfTypeOfFuel);
+            const string k_WrongNumberOfTypeOfFuel = "Please enter Number in range of 1-4";
+
+            PrintMessage(k_WrongNumberOfTypeOfFuel + Environment.NewLine);
         }
 
         public void WrongNumberOfOptionOfStatus()
         {
-            PrintMessage(k_WrongNumberOfOptionOfStatus);
+            const string k_WrongNumberOfOptionOfStatus = "Please enter Number in Range of 1-3";
+
+            PrintMessage(k_WrongNumberOfOptionOfStatus + Environment.NewLine);
         }
 
         public void ShowFormatMessages()
         {
-            PrintMessage(k_FormatMessages);
+            const string k_FormatMessages = "You Entered not in context details, please enter again";
+
+            PrintMessage(k_FormatMessages + Environment.NewLine);
         }
 
         public void ShowWrongFuel()
         {
-            PrintMessage(k_WrongFuel);
+            const string k_WrongFuel = "The Fuel you entered is not sutibale to your vehicle,therefore we didnt fill your engine";
+
+            PrintMessage(k_WrongFuel + Environment.NewLine);
         }
 
         public void ShowTooMuchFuel()
         {
-            PrintMessage(k_TooMuchFuel);
+            const string k_TooMuchFuel = "You entered Too Much fuel, therefore we didnt fill your engine";
+
+            PrintMessage(k_TooMuchFuel + Environment.NewLine);
         }
 
         public void ShowTooMuchMinutes()
         {
-            PrintMessage(k_TooMuchMinutes);
+            const string k_TooMuchMinutes = "You entered Too Much Minutes, therefore we didnt fill your engine";
+
+            PrintMessage(k_TooMuchMinutes + Environment.NewLine);
         }
     }
 }

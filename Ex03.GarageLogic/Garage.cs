@@ -28,7 +28,7 @@ namespace Ex03.GarageLogic
 
             if(eng == null)
             {
-                throw new ArgumentException(string.Format("Vehicle {0} does not have Fuel engine", i_LicenseId));
+                throw new ArgumentException(string.Format("Vehicle {0} does not have Fuel engine {1}{1}{1}", i_LicenseId, Environment.NewLine));
             }
 
             eng.FillFuel(i_amountOfFuel, i_typeOfFuel);
@@ -41,7 +41,7 @@ namespace Ex03.GarageLogic
 
             if (eng == null)
             {
-                throw new ArgumentException(string.Format("Vehicle {0} does not have Electric engine", i_LicenseId));
+                throw new ArgumentException(string.Format("Vehicle {0} does not have Electric engine {1}{1}{1}", i_LicenseId, Environment.NewLine));
             }
 
             eng.ChargeBattery(toHour);
@@ -124,8 +124,8 @@ namespace Ex03.GarageLogic
 
             string vehicleDescription = CreateDescriptionOfVehicle(ticket.Vehicle);
           
-            string ticketDescription = string.Format(@"
--Vehicle Description-
+            string ticketDescription = string.Format(
+@"-Vehicle Description-
 License Number: {0}
 Status In Garage: {1}
 Owner Name: {2}
