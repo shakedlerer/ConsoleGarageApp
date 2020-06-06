@@ -35,10 +35,6 @@ namespace Ex03.GarageLogic
             get { return m_CurrentFuelCapacity; }
         }
 
-        //public eFuelType FuelType
-        //{
-        //    get { return m_FuelType; }
-        //}
 
         public VehiclesEnums.eFuelType FuelType
         {
@@ -55,14 +51,6 @@ namespace Ex03.GarageLogic
             m_Engine = i_Engine;
         }
 
-        //public void FuelVehicle(eFuelType i_FuelType, float i_CurrentFuelCapacity)
-        //{
-        //    m_FuelType = i_FuelType;
-        //    m_CurrentFuelCapacity = i_CurrentFuelCapacity;
-        //    m_CheckedList[0] = true;
-        //    m_CheckedList[1] = true;
-        //}
-
         public void FuelVehicle(VehiclesEnums.eFuelType i_FuelType, float i_CurrentFuelCapacity)
         {
             m_FuelType = i_FuelType;
@@ -76,14 +64,6 @@ namespace Ex03.GarageLogic
             m_HoursLeft = i_HoursLeft;
             m_CheckedList[2] = true;
         }
-
-        //public void CarVehicle(eColor i_Color, eNumberOfDoors i_NumberOfDoors)
-        //{
-        //    m_Color = i_Color;
-        //    m_NumberOfDoors = i_NumberOfDoors;
-        //    m_CheckedList[3] = true;
-        //    m_CheckedList[4] = true;
-        //}
 
         public void CarVehicle(VehiclesEnums.eColor i_Color, VehiclesEnums.eNumberOfDoors i_NumberOfDoors)
         {
@@ -100,14 +80,6 @@ namespace Ex03.GarageLogic
             m_CheckedList[5] = true;
             m_CheckedList[6] = true;
         }
-
-        //public void BikeVehicle(eBikeLicenseType i_LicenseBikeType, int i_EngineBikeCapaicty)
-        //{
-        //    m_LicenseBikeType = i_LicenseBikeType;
-        //    m_EngineBikeCapaicty = i_EngineBikeCapaicty;
-        //    m_CheckedList[7] = true;
-        //    m_CheckedList[8] = true;
-        //}
 
         public void BikeVehicle(VehiclesEnums.eBikeLicenseType i_LicenseBikeType, int i_EngineBikeCapaicty)
         {
@@ -132,20 +104,10 @@ namespace Ex03.GarageLogic
             get { return m_HoursLeft; }
         }
 
-        //public eColor CarColor
-        //{
-        //    get { return m_Color; }
-        //}
-
         public VehiclesEnums.eColor CarColor
         {
             get { return m_Color; }
         }
-
-        //public eNumberOfDoors NumberOfDoors
-        //{
-        //    get { return m_NumberOfDoors; }
-        //}
 
         public VehiclesEnums.eNumberOfDoors NumberOfDoors
         {
@@ -162,11 +124,6 @@ namespace Ex03.GarageLogic
             get { return m_CargoCapacity; }
         }
 
-        //public eBikeLicenseType LicenseBikeType
-        //{
-        //    get { return m_LicenseBikeType; }
-        //}
-
         public VehiclesEnums.eBikeLicenseType LicenseBikeType
         {
             get { return m_LicenseBikeType; }
@@ -181,5 +138,52 @@ namespace Ex03.GarageLogic
         {
             get { return m_CheckedList; }
         }
+
+        // TODO Delete comments below:
+
+        //public eFuelType FuelType
+        //{
+        //    get { return m_FuelType; }
+        //}
+
+        //public void FuelVehicle(eFuelType i_FuelType, float i_CurrentFuelCapacity)
+        //{
+        //    m_FuelType = i_FuelType;
+        //    m_CurrentFuelCapacity = i_CurrentFuelCapacity;
+        //    m_CheckedList[0] = true;
+        //    m_CheckedList[1] = true;
+        //}
+
+        //public void CarVehicle(eColor i_Color, eNumberOfDoors i_NumberOfDoors)
+        //{
+        //    m_Color = i_Color;
+        //    m_NumberOfDoors = i_NumberOfDoors;
+        //    m_CheckedList[3] = true;
+        //    m_CheckedList[4] = true;
+        //}
+
+        //public void BikeVehicle(eBikeLicenseType i_LicenseBikeType, int i_EngineBikeCapaicty)
+        //{
+        //    m_LicenseBikeType = i_LicenseBikeType;
+        //    m_EngineBikeCapaicty = i_EngineBikeCapaicty;
+        //    m_CheckedList[7] = true;
+        //    m_CheckedList[8] = true;
+        //}
+
+        //public eColor CarColor
+        //{
+        //    get { return m_Color; }
+        //}
+
+        //public eNumberOfDoors NumberOfDoors
+        //{
+        //    get { return m_NumberOfDoors; }
+        //}
+
+        //public eBikeLicenseType LicenseBikeType
+        //{
+        //    get { return m_LicenseBikeType; }
+        //}
+
     }
 }

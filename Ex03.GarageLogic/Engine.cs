@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
@@ -21,7 +19,6 @@ namespace Ex03.GarageLogic
         {
             get { return m_MaxEnergyUnit; }
             set { m_MaxEnergyUnit = value; }
-
         }
 
         public Engine(float i_MaxEnergyUnit)
@@ -29,20 +26,7 @@ namespace Ex03.GarageLogic
             m_MaxEnergyUnit = i_MaxEnergyUnit;
         }
 
-        //public float Energy
-        //{
-        //    //set
-        //    //{
-        //    //    if (value < k_MinToFill || value > m_MaxEnergyUnit)
-        //    //    {
-        //    //        throw new ValueOutOfRangeException("Can't charge this much energy,",k_MinToFill, m_MaxEnergyUnit);
-        //    //    }
-        //    //    m_MaxEnergyUnit = value;
-        //    //}
-        //    get { return m_EnergyUnitLeft; }
-        //}
-
-        public void Fill(float i_AmountToFill)
+      public void FillEnergy(float i_AmoutToFill)
         {
             if (m_EnergyUnitLeft + i_AmountToFill <= m_MaxEnergyUnit)
             {

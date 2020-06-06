@@ -19,23 +19,11 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
 
         }
 
-        //public VehicleTicket(Vehicle i_Vehicle)
-        //{
-        //    m_Vehicle = i_Vehicle;
-        //    m_VehicleStatus = eVehicleStatus.InProgress;
-        //}
-
         public VehicleTicket(Vehicle i_Vehicle)
         {
             m_Vehicle = i_Vehicle;
             m_VehicleStatus = VehiclesEnums.eVehicleStatus.InProgress;
         }
-
-        //public eVehicleStatus Status
-        //{
-        //    set { m_VehicleStatus = value; }
-        //    get { return m_VehicleStatus; }
-        //}
 
         public VehiclesEnums.eVehicleStatus Status
         {
@@ -113,6 +101,21 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
 
             return retVal;
         }
+
+
+        // TODO Delete comments below:
+
+        //public VehicleTicket(Vehicle i_Vehicle)
+        //{
+        //    m_Vehicle = i_Vehicle;
+        //    m_VehicleStatus = eVehicleStatus.InProgress;
+        //}
+
+        //public eVehicleStatus Status
+        //{
+        //    set { m_VehicleStatus = value; }
+        //    get { return m_VehicleStatus; }
+        //}
 
     }
 }

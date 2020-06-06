@@ -6,8 +6,8 @@ namespace Ex03.ConsoleUI
 {
     class InputValidator
     {
-        private const int k_NumberOfNewStatus = 3;
-        private const int k_NumberOfFuelType = 4;
+        //private const int k_NumberOfNewStatus = 3;
+       // private const int k_NumberOfFuelType = 4;
 
         //public void CheckIfStringIsValidOwnerName(string i_NameString)
         //{

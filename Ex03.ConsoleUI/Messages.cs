@@ -43,6 +43,5 @@ namespace Ex03.ConsoleUI
         //7.show all details of vehicle{0}
         //8.exit"
         //, Environment.NewLine);
-
     }
 }

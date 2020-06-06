@@ -13,14 +13,6 @@ namespace Ex03.GarageLogic
         private string m_ManufactoryName;
         private const int k_MinToFill = 0;
 
-        public override string ToString()
-        {
-            return string.Format(
-@"Current Pressure: {1}
-Maximum Pressure: {2}
-ManuFactory Name: {3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m_ManufactoryName);
-        }
-
         public Tire(float i_MaxPressure)
         {
             r_MaxPressure = i_MaxPressure;
@@ -37,6 +29,7 @@ ManuFactory Name: {3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m
             set { m_ManufactoryName = value; }
             get { return m_ManufactoryName; }
         }
+
         public float AirPressure
         {
             set
@@ -60,16 +53,23 @@ ManuFactory Name: {3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m
             m_CurrentPressure = r_MaxPressure;
         }
 
-        public void FillPressure(float i_AmountOfAir)
-        {
-            if (m_CurrentPressure + i_AmountOfAir <= r_MaxPressure)
-            {
-                m_CurrentPressure += i_AmountOfAir;
-            }
-            else
-            {
-                throw new ValueOutOfRangeException(k_MinToFill, r_MaxPressure);
-            }
-        }
+        // TODO Delete comments below:
+
+        //public override string ToString()
+        //{
+        //    return string.Format("Current Pressure:{1}{0}Maximum Pressure:{2}{0}ManuFactory Name:{3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m_ManufactoryName);
+        //}
+
+        //public void FillPressure(float i_AmoutOfAir)
+        //{
+        //    if (m_CurrentPressure + i_AmoutOfAir <= r_MaxPressure)
+        //    {
+        //        m_CurrentPressure += i_AmoutOfAir;
+        //    }
+        //    else
+        //    {
+        //        throw new ValueOutOfRangeException(k_MinToFill, r_MaxPressure);
+        //    }
+        //}
     }
 }

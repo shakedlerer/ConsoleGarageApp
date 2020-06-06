@@ -5,14 +5,6 @@ namespace Ex03.GarageLogic
 {
     class VehicleFactory
     {
-        private const int k_CarNumberOfWheels = 4;
-        private const int k_BikeNumberOfWheels = 2;
-        private const int k_TruckNumberOfWheels = 16;
-
-        private const float k_CarMaxPressure = 32f;
-        private const float k_BikeMaxPressure = 30f;
-        private const float k_TruckMaxPressure = 28f;
-
         private const float k_CarMaxElectricEngTime = 2.1f;
         private const float k_BikeMaxElectricEngTime = 1.2f;
 
@@ -20,12 +12,23 @@ namespace Ex03.GarageLogic
         private const int k_BikeMaxFuelCapacity = 7;
         private const int k_TruckMaxFuelCapacity = 120;
 
-        //private const eFuelType k_CarFuelType = eFuelType.Octan96;
-        //private const eFuelType k_BikeFuelType = eFuelType.Octan95;
-        //private const eFuelType k_TruckFuelType = eFuelType.Soler;
         private const VehiclesEnums.eFuelType k_CarFuelType = VehiclesEnums.eFuelType.Octan96;
         private const VehiclesEnums.eFuelType k_BikeFuelType = VehiclesEnums.eFuelType.Octan95;
         private const VehiclesEnums.eFuelType k_TruckFuelType = VehiclesEnums.eFuelType.Soler;
+
+        // TODO Delete comments below:
+
+        //private const int k_CarNumberOfWheels = 4;
+        //private const int k_BikeNumberOfWheels = 2;
+        //private const int k_TruckNumberOfWheels = 16;
+
+        //private const float k_CarMaxPressure = 32f;
+        //private const float k_BikeMaxPressure = 30f;
+        //private const float k_TruckMaxPressure = 28f;
+
+        //private const eFuelType k_CarFuelType = eFuelType.Octan96;
+        //private const eFuelType k_BikeFuelType = eFuelType.Octan95;
+        //private const eFuelType k_TruckFuelType = eFuelType.Soler;
 
         //public Vehicle CreateNewCarOfType(eVehicleType i_VehicleType, string i_LicenseNumber)
         //{
@@ -110,7 +113,6 @@ namespace Ex03.GarageLogic
             }
             return vehicle;
         }
-
 
         public List<Tire> CreateWheels(float i_MaxPressure, int i_NumOfWheels)
         {
