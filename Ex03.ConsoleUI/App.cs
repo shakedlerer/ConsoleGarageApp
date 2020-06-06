@@ -8,18 +8,17 @@ namespace Ex03.ConsoleUI
     public class App
     {
         //private readonly InputValidator r_Validator;
-        private const string k_ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)";
-        private const string k_SelectVehicleType = "Select vehicle type:";
-        private const string k_ShowLicenseNumbersList = "The desired vehicle's license numbers list is:";
+
         private readonly UI r_Ui;
         private readonly Garage r_Garage;
         // try to do this with 'GetNumberFromOptions' method in UI
-        private readonly string r_AskingTypeOfFuel = string.Format(
-@"Please choose the Type of fuel.
-1 - Octan95
-2 - Octan96
-3 - Octan98
-4 - Soler");
+
+//        private readonly string r_AskingTypeOfFuel = string.Format(
+//@"Please choose the Type of fuel.
+//1 - Octan95
+//2 - Octan96
+//3 - Octan98
+//4 - Soler");
 
         public App()
         {
@@ -85,6 +84,8 @@ namespace Ex03.ConsoleUI
 
         public void ShowVehiclesLicenseNumbers()
         {
+            const string k_ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)";
+            const string k_ShowLicenseNumbersList = "The desired vehicle's license numbers list is:";
             const int k_AllVehicles = 4;
             string[] statusOptions = { "In Progress", "Fixed", "Paid", "All Vehicles" };
             int option = r_Ui.GetNumberFromOptions(statusOptions, k_ShowVehiclesLicenseNumbers);
@@ -349,7 +350,9 @@ namespace Ex03.ConsoleUI
 
         public VehiclesEnums.eVehicleType GetVehicleType()
         {
+            const string k_SelectVehicleType = "Select vehicle type:";
             VehiclesEnums.eVehicleType vehicleType;
+
             try
             {
                 vehicleType = GetEnumType<VehiclesEnums.eVehicleType>(k_SelectVehicleType);
