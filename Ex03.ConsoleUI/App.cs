@@ -87,7 +87,7 @@ namespace Ex03.ConsoleUI
             const string k_ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)";
             const string k_ShowLicenseNumbersList = "The desired vehicle's license numbers list is:";
             const int k_AllVehicles = 4;
-            string[] statusOptions = { "In Progress", "Fixed", "Paid", "All Vehicles" };
+            string[] statusOptions = Enum.GetNames(typeof(VehiclesEnums.eVehicleStatus));
             int option = r_Ui.GetNumberFromOptions(statusOptions, k_ShowVehiclesLicenseNumbers);
 
             r_Ui.PrintMessage(k_ShowLicenseNumbersList + Environment.NewLine);
@@ -161,13 +161,13 @@ namespace Ex03.ConsoleUI
             int typeOfFuel;
             string licenseNumber = r_Ui.GetLicenseNumber();
             bool vehicleExist = r_Garage.VehicleExistInGarage(licenseNumber);
-            string[] fuelOptions = { "Octan95", "Octan96", "Octan98", "Soler" };
+            string[] fuelTypes = Enum.GetNames(typeof(VehiclesEnums.eFuelType));
 
             if (vehicleExist)
             {
                 r_Ui.PrintMessage("Please enter desired fuel amount to fill:" + Environment.NewLine);
                 amountOfFuel = r_Ui.GetFloatInput();
-                typeOfFuel = r_Ui.GetNumberFromOptions(fuelOptions, "Please choose the Type of fuel:");
+                typeOfFuel = r_Ui.GetNumberFromOptions(fuelTypes, "Please choose fuel type:");
                 r_Garage.FillFuel(licenseNumber, amountOfFuel, (VehiclesEnums.eFuelType)typeOfFuel);
             }
             else
