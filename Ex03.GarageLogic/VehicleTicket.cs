@@ -6,9 +6,7 @@ namespace Ex03.GarageLogic
         private Vehicle m_Vehicle;
         private string m_PhoneNumber;
         private string m_OwnerName;
-        //private eVehicleStatus m_VehicleStatus;
         private VehiclesEnums.eVehicleStatus m_VehicleStatus;
-
 
         public override string ToString()
         {
@@ -16,7 +14,6 @@ namespace Ex03.GarageLogic
 Phone Number:{1}
 Owner Name:{2}
 Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_VehicleStatus);
-
         }
 
         public VehicleTicket(Vehicle i_Vehicle)
@@ -44,16 +41,14 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
                 {
                     m_PhoneNumber = value;
                 }
+                // TODO We do a phone number validation in UI's method 'GetPhoneNumber()' - do we need this exception here ?
                 else
                 {
                     string errorMsg = string.Format("Error: Invalid Phone Number: {0}", value);
                     throw new ArgumentException(errorMsg);
                 }
             }
-            get
-            {
-                return m_PhoneNumber;
-            }
+            get { return m_PhoneNumber; }
         }
 
         public string Owner
@@ -64,16 +59,14 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
                 {
                     m_OwnerName = value;
                 }
+                // TODO We do a name validation in UI's method 'GetOwnerName()' - do we need this exception here ?
                 else
                 {
                     string errorMsg = string.Format("Error: Invalid Name, must be string only..: {0}", value);
                     throw new ArgumentException(errorMsg);
                 }
             }
-            get
-            {
-                return m_OwnerName;
-            }
+            get { return m_OwnerName; }
         }
 
         private bool allCharsAreLetters(string I_Str)
@@ -101,21 +94,5 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
 
             return retVal;
         }
-
-
-        // TODO Delete comments below:
-
-        //public VehicleTicket(Vehicle i_Vehicle)
-        //{
-        //    m_Vehicle = i_Vehicle;
-        //    m_VehicleStatus = eVehicleStatus.InProgress;
-        //}
-
-        //public eVehicleStatus Status
-        //{
-        //    set { m_VehicleStatus = value; }
-        //    get { return m_VehicleStatus; }
-        //}
-
     }
 }

@@ -37,15 +37,8 @@
   <ItemGroup>
     <Compile Include="Bike.cs" />
     <Compile Include="Car.cs" />
-    <Compile Include="eBikeLicenseType.cs" />
-    <Compile Include="eColor.cs" />
-    <Compile Include="eFuelType.cs" />
     <Compile Include="ElectricEngine.cs" />
     <Compile Include="Engine.cs" />
-    <Compile Include="eNumberOfDoors.cs" />
-    <Compile Include="eNumUtils.cs" />
-    <Compile Include="eVehicleStatus.cs" />
-    <Compile Include="eVehicleType.cs" />
     <Compile Include="FuelEngine .cs" />
     <Compile Include="Garage.cs" />
     <Compile Include="VehiclesEnums.cs" />
@@ -54,7 +47,6 @@
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleFactory.cs" />
-    <Compile Include="VehicleRequest.cs" />
     <Compile Include="Tire.cs" />
   </ItemGroup>
   <ItemGroup>
