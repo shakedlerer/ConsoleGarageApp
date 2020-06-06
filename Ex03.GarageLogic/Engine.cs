@@ -38,7 +38,6 @@ namespace Ex03.GarageLogic
             else
             {
                 float ableToFill = m_MaxEnergyUnit - m_EnergyUnitLeft;
-                Console.WriteLine();
                 throw new ValueOutOfRangeException(k_MinToFill, ableToFill);
             }
         }

@@ -154,7 +154,7 @@ namespace Ex03.ConsoleUI
 
             while (!inputIOnRange)
             {
-                PrintMessage(k_InvalidOptionSelected);
+                PrintMessage(k_InvalidOptionSelected + Environment.NewLine);
                 selectedNumber = GetIntInput();
                 inputIOnRange = selectedNumber >= i_Min && selectedNumber <= i_Max;
             }

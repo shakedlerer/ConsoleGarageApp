@@ -160,13 +160,13 @@ namespace Ex03.ConsoleUI
             int typeOfFuel;
             string licenseNumber = r_Ui.GetLicenseNumber();
             bool vehicleExist = r_Garage.VehicleExistInGarage(licenseNumber);
-            
+            string[] fuelOptions = { "Octan95", "Octan96", "Octan98", "Soler" };
+
             if (vehicleExist)
             {
                 r_Ui.PrintMessage("Please enter desired fuel amount to fill:" + Environment.NewLine);
                 amountOfFuel = r_Ui.GetFloatInput();
-                r_Ui.PrintMessage(r_AskingTypeOfFuel + Environment.NewLine);
-                typeOfFuel = r_Ui.GetNumberInRange(1, 4);
+                typeOfFuel = r_Ui.GetNumberFromOptions(fuelOptions, "Please choose the Type of fuel:");
                 r_Garage.FillFuel(licenseNumber, amountOfFuel, (VehiclesEnums.eFuelType)typeOfFuel);
             }
             else
