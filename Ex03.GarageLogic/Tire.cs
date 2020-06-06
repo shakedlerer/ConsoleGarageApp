@@ -15,7 +15,10 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return string.Format("Current Pressure:{1}{0}Maximum Pressure:{2}{0}ManuFactory Name:{3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m_ManufactoryName);
+            return string.Format(
+@"Current Pressure: {1}
+Maximum Pressure: {2}
+ManuFactory Name: {3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m_ManufactoryName);
         }
 
         public Tire(float i_MaxPressure)
@@ -57,11 +60,11 @@ namespace Ex03.GarageLogic
             m_CurrentPressure = r_MaxPressure;
         }
 
-        public void FillPressure(float i_AmoutOfAir)
+        public void FillPressure(float i_AmountOfAir)
         {
-            if (m_CurrentPressure + i_AmoutOfAir <= r_MaxPressure)
+            if (m_CurrentPressure + i_AmountOfAir <= r_MaxPressure)
             {
-                m_CurrentPressure += i_AmoutOfAir;
+                m_CurrentPressure += i_AmountOfAir;
             }
             else
             {

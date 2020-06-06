@@ -16,8 +16,8 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             return string.Format(@"Electric engine
-Hours left:{0}
-Maximum loading time:{1}", m_EnergyUnitLeft, m_MaxEnergyUnit);
+Hours left: {0}
+Maximum loading time: {1}", m_EnergyUnitLeft, m_MaxEnergyUnit);
         }
 
         public void FillEnergy(float i_MinutesToFill)
