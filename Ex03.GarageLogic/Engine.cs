@@ -48,6 +48,7 @@ namespace Ex03.GarageLogic
             {
                 m_EnergyUnitLeft += i_AmountToFill;
                 Console.WriteLine(string.Format(@"Successfully filled!
+
 "));
             }
             else

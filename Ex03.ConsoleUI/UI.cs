@@ -28,8 +28,9 @@ namespace Ex03.ConsoleUI
         private const string k_InvalidNumberEntered = "Invalid Option selected, please try again";
         private const string k_InvalidOptionSelected = "Invalid Option entered, please try again:";
         private readonly string k_GarageMenu = string.Format(
-@"
-Welcome to our Garage:
+@" --------------------------------------------------
+|              Welcome to our Garage:              |
+ --------------------------------------------------
 1. Add New Car
 2. See all license Number Vehicle in garage
 3. Change status of car

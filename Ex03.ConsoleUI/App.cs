@@ -319,6 +319,7 @@ namespace Ex03.ConsoleUI
                 string errMsg = string.Format("Vehicle {0} was added successfully!", licenseNumber);
                 r_Ui.PrintMessage(errMsg);
                 r_Ui.PrintMessage("");
+                r_Ui.PrintMessage("");
             }
         }
 
