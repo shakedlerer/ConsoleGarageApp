@@ -145,7 +145,7 @@ namespace Ex03.ConsoleUI
             if (vehicleExist)
             {
                 r_Garage.FillToMaximum(licenseNumber);
-                r_Ui.PrintMessage("Tires filled to max!" + Environment.NewLine + Environment.NewLine);
+                r_Ui.PrintMessage("Tires filled to max!" + Environment.NewLine + Environment.NewLine + Environment.NewLine);
             }
             else
             {
@@ -184,7 +184,7 @@ namespace Ex03.ConsoleUI
 
             if (vehicleExist)
             {
-                r_Ui.PrintMessage("Please enter charging time, in minutes:");
+                r_Ui.PrintMessage("Please enter charging time, in minutes:" + Environment.NewLine);
                 amountOfMinutes = r_Ui.GetIntInput();
                 r_Garage.FillElectric(licenseNumber, amountOfMinutes);
             }
