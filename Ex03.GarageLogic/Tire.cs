@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-//using System.Threading.Tasks;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
     public class Tire
     {
         private float m_CurrentPressure;
         private readonly float r_MaxPressure;
-        private string m_ManufactoryName;
+        private string m_Manufacturer;
         private const int k_MinToFill = 0;
 
         public Tire(float i_MaxPressure)
         {
             r_MaxPressure = i_MaxPressure;
         }
-        public Tire(float i_CurrentPressure, float i_MaxPressure, string i_ManufactoryName)
+        public Tire(float i_CurrentPressure, float i_MaxPressure, string i_Manufacturer)
         {
             m_CurrentPressure = i_CurrentPressure;
             r_MaxPressure = i_MaxPressure;
-            m_ManufactoryName = i_ManufactoryName;
+            m_Manufacturer = i_Manufacturer;
         }
 
-        public string ManufactoryName
+        public string Manufacturer
         {
-            set { m_ManufactoryName = value; }
-            get { return m_ManufactoryName; }
+            set { m_Manufacturer = value; }
+            get { return m_Manufacturer; }
         }
 
         public float AirPressure
@@ -52,24 +46,5 @@ namespace Ex03.GarageLogic
         {
             m_CurrentPressure = r_MaxPressure;
         }
-
-        // TODO Delete comments below:
-
-        //public override string ToString()
-        //{
-        //    return string.Format("Current Pressure:{1}{0}Maximum Pressure:{2}{0}ManuFactory Name:{3}", Environment.NewLine, m_CurrentPressure, r_MaxPressure, m_ManufactoryName);
-        //}
-
-        //public void FillPressure(float i_AmoutOfAir)
-        //{
-        //    if (m_CurrentPressure + i_AmoutOfAir <= r_MaxPressure)
-        //    {
-        //        m_CurrentPressure += i_AmoutOfAir;
-        //    }
-        //    else
-        //    {
-        //        throw new ValueOutOfRangeException(k_MinToFill, r_MaxPressure);
-        //    }
-        //}
     }
 }

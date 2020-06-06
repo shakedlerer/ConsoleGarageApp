@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-//using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -10,7 +6,6 @@ namespace Ex03.GarageLogic
     {
         protected string m_Model;
         protected readonly string r_LicenseNumber;
-        //protected float m_EnergyLeft;
         protected List<Tire> m_SetOfTires;
         protected Engine m_Engine;
 
@@ -22,7 +17,6 @@ namespace Ex03.GarageLogic
         }
 
         // PROPERTIES :
-
         public string ModelName
         {
             set { m_Model = value; }
@@ -32,7 +26,6 @@ namespace Ex03.GarageLogic
         public Engine Engine
         {
             get { return m_Engine; }
-            //set { m_Engine = value; }                 // Avital put this in comment because when adding a new fuel bike it asked to enter value for the field Engine
         }
 
         public string FuelType
@@ -52,11 +45,7 @@ namespace Ex03.GarageLogic
 
         public float CurrentEnergy
         {
-            //set { m_Engine.EnergyUnitLeft = value; }
-            get
-            {
-                return m_Engine.EnergyUnitLeft;
-            }
+            get { return m_Engine.EnergyUnitLeft; }
         }
 
         public float MaxEnergy
@@ -71,23 +60,13 @@ namespace Ex03.GarageLogic
 
         public string TiresManufactor
         {
-            set
-            {
-                SetTiresManufactor(value);
-            }
-            get
-            {
-                return m_SetOfTires[0].ManufactoryName;
-            }
+            set { SetTiresManufacturer(value); }
+            get { return m_SetOfTires[0].Manufacturer; }
         }
 
         public float CurrentAirInWheels
         {
-            //set { SetWheelsPressure(value); }         // Avital put this in comment because when adding a new fuel bike it asked to enter value for the field CurrentAirInWheels
-            get
-            {
-                return m_SetOfTires[0].AirPressure;
-            }
+            get { return m_SetOfTires[0].AirPressure; }
         }
 
         public float MaxWheelsPressure
@@ -96,7 +75,6 @@ namespace Ex03.GarageLogic
         }
 
         // METHODS:
-
         public void Fill(float i_ToFill)
         {
             m_Engine.FillEnergy(i_ToFill);
@@ -128,11 +106,11 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void SetTiresManufactor(string i_TiresManufactor)
+        public void SetTiresManufacturer(string i_TiresManufacturer)
         {
             foreach (Tire tire in m_SetOfTires)
             {
-                tire.ManufactoryName = i_TiresManufactor;
+                tire.Manufacturer = i_TiresManufacturer;
             }
         }
 
@@ -140,34 +118,5 @@ namespace Ex03.GarageLogic
         {
             return r_LicenseNumber;
         }
-
-        // TODO Delete comments below:
-
-        //        public override string ToString()
-        //        {
-        //            return string.Format(@"Model Name:{0}
-        //License Number:{1}
-        //Energy Left:{2}
-        //{3}
-        //{4}", m_ModelName, r_LicenseNumber, m_Engine.EnergyUnitLeft, m_SetOfTires[0].ToString(), m_Engine.ToString());
-        //}
-
-        //private float getEnergyLeft()
-        //{
-        //    return m_Engine.EnergyUnitLeft;
-        //}
-
-        //public string ManufactoryName
-        //{
-        //    set { SetWheelsManufactory(value); }
-        //    get { return m_SetOfTires[0].ManufactoryName; }
-        //}
-
-        //public Vehicle(string i_LicenseNumber, Engine i_Engine, List<Tire> i_Wheels)
-        //{
-        //    r_LicenseNumber = i_LicenseNumber;
-        //    m_Engine = i_Engine;
-        //    m_SetOfTires = i_Wheels;
-        //}
     }
 }

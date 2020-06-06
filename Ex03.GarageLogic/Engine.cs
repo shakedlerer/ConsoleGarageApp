@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -26,14 +24,12 @@ namespace Ex03.GarageLogic
             m_MaxEnergyUnit = i_MaxEnergyUnit;
         }
 
-      public void FillEnergy(float i_AmountToFill)
+        public void FillEnergy(float i_AmountToFill)
         {
             if (m_EnergyUnitLeft + i_AmountToFill <= m_MaxEnergyUnit)
             {
                 m_EnergyUnitLeft += i_AmountToFill;
-                Console.WriteLine(string.Format(@"Successfully filled!
-
-"));
+                Console.WriteLine(string.Format("Successfully filled! {0}{0}", Environment.NewLine));
             }
             else
             {

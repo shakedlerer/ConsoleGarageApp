@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-//using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
@@ -37,26 +33,5 @@ namespace Ex03.GarageLogic
             }
             get { return m_CargoCapacity; }
         }
-
-        // TODO Delete comments below:
-
-        //        public override string ToString()
-        //        {
-        //            return string.Format(@"{0}
-        //Holds Danager Cargo:{1}
-        //Cargo capacity:{2}", base.ToString(), m_IsHoldsDangerCargo, m_CargoCapacity);
-        //        }
-
-        //public Truck(string i_LicenseNumber, Engine i_Engine,
-        //             List<Tire> i_Wheels) :
-        //    base(i_LicenseNumber, i_Engine, i_Wheels)
-        //{
-        //}
-
-        //public float CurrentEnergy
-        //{
-        //    set { m_EnergyLeft = value; }
-        //}
-
     }
 }
