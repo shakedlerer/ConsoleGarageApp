@@ -8,8 +8,8 @@ namespace Ex03.ConsoleUI
     {
         public static void Main()
         {
-            App io = new App();
-            io.Start();
+            App garageApp = new App();
+            garageApp.Start();
         }
     }
 }

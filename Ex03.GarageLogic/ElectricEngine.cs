@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
@@ -15,16 +13,14 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return string.Format(@"Electric engine
-Hours left:{0}
-Maximum loading time:{1}", m_EnergyUnitLeft, m_MaxEnergyUnit);
+            return GetType().Name;
         }
 
-        public void FillEnergy(float i_MinutesToFill)
+        public void ChargeBattery(float i_MinutesToFill)
         {
             try
             {
-                Fill(i_MinutesToFill);
+                FillEnergy(i_MinutesToFill);
             }
             catch(ValueOutOfRangeException e)
             {
@@ -33,17 +29,12 @@ Maximum loading time:{1}", m_EnergyUnitLeft, m_MaxEnergyUnit);
             }
         }
 
-        public float CurrentElectricityCapacity
-        {
-            set { m_EnergyUnitLeft = value; }
-            get { return m_EnergyUnitLeft; }
-        }
+        // TODO Delete comments below:
 
-        //public float EnergyUnitLeft
+        //public float CurrentElectricityCapacity
         //{
-        //    get { return m_EnergyUnitLeft; }
         //    set { m_EnergyUnitLeft = value; }
+        //    get { return m_EnergyUnitLeft; }
         //}
-
     }
 }

@@ -8,31 +8,31 @@ namespace Ex03.ConsoleUI
 {
     public class UI
     {
-
-        ////////////////////////////////////////////////////////
         // Get input from user
-        public string GetInput()
+
+        public string GetStringInput()
         {
             return Console.ReadLine();
         }
 
         public int GetNumberFromOptions(string[] i_Options, string i_Title)
         {
+            int selectedNumber;
+
             PrintMessage(i_Title);
             ShowStringOptions(i_Options);
-            int selectedNumber = GetIntInRange(1, i_Options.Length);
+            selectedNumber = GetNumberInRange(1, i_Options.Length);
 
             return selectedNumber;
         }
 
-
         public string GetLicenseNumber()
         {
-            PrintMessage(Messages.AskingLicenseNumber);
-            string licenseNumber = GetInput();
             int number;
-
             bool validLicenseNumber = false;
+
+            PrintMessage(Messages.AskingLicenseNumber);
+            string licenseNumber = GetStringInput();
 
             while (!validLicenseNumber)
             {
@@ -40,8 +40,8 @@ namespace Ex03.ConsoleUI
 
                 if (!validLicenseNumber)
                 {
-                    PrintMessage(Messages.InvalidPhoneNumberError);
-                    licenseNumber = GetInput();
+                    PrintMessage(Messages.InvalidLicenseNumberError);
+                    licenseNumber = GetStringInput();
                 }
             }
 
@@ -51,7 +51,7 @@ namespace Ex03.ConsoleUI
         public string GetPhoneNumber()
         {
             PrintMessage(Messages.EnterPhoneNumber);
-            string phoneNumber = GetInput();
+            string phoneNumber = GetStringInput();
             int number;
             bool validPhoneNumber = false;
 
@@ -62,7 +62,7 @@ namespace Ex03.ConsoleUI
                 if (!validPhoneNumber)
                 {
                     PrintMessage(Messages.InvalidPhoneNumberError);
-                    phoneNumber = GetInput();
+                    phoneNumber = GetStringInput();
                 }
             }
             return phoneNumber;
@@ -77,16 +77,17 @@ namespace Ex03.ConsoleUI
 
             while (!invalidOwnerName)
             {
-                ownerName = GetInput();
+                invalidOwnerName = true;
+                ownerName = GetStringInput();
 
                 foreach (char ch in ownerName)
                 {
-                    if (!char.IsLetter(ch))
+                    if(!char.IsLetter(ch))
                     {
+                        invalidOwnerName = false;
                         PrintMessage(Messages.InvalidNameError);
                         break;
                     }
-                    invalidOwnerName = true;
                 }
             }
             return ownerName;
@@ -94,7 +95,7 @@ namespace Ex03.ConsoleUI
 
         public int GetOptionInput()
         {
-            string inputStr = GetInput();
+            string inputStr = GetStringInput();
             int inputNum;
             bool isNumber = int.TryParse(inputStr, out inputNum);
             if (!isNumber)
@@ -108,96 +109,129 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        public int GetIntInRange(int i_Min, int i_Max)
+        public int GetNumberInRange(int i_Min, int i_Max)
         {
-            int selectedNumber = GetIntNumber();
+            int selectedNumber = GetIntInput();
 
             bool inputIOnRange = selectedNumber >= i_Min && selectedNumber <= i_Max;
 
             while (!inputIOnRange)
             {
                 PrintMessage(Messages.InvalidOptionSelected);
-                selectedNumber = GetIntNumber();
+                selectedNumber = GetIntInput();
                 inputIOnRange = selectedNumber >= i_Min && selectedNumber <= i_Max;
             }
 
             return selectedNumber;
         }
 
-        public bool GetBool()
+        public bool GetBoolInput()
         {
-            int boolNumber = GetIntNumber();
-            bool retVal = false;
-            if (boolNumber == 0)
-            {
-                retVal = false;
-            }
-            else if (boolNumber == 1)
-            {
-                retVal = true;
-            }
-            else
-            {
-                return GetBool();
-            }
+            //string inputStr;
+            //bool inputBool = true;
+            //bool isBoolean = false;
+            string[] options = {"True", "False" };
+            int selectedNumber = GetNumberFromOptions(options, " ");
 
-            return retVal;
+            return selectedNumber == 1;
+
+
+            //while (!isBoolean)
+            //{
+            //    try
+            //    {
+            //        inputStr = GetStringInput();
+            //        inputBool = bool.Parse(inputStr);
+            //        isBoolean = true;
+            //    }
+            //    catch (FormatException ex)
+            //    {
+            //        PrintMessage("Invalid Boolean Value, please try again...");
+            //    }
+            //}
+
+            //return inputBool;
+            
+            //int boolNumber = GetIntInput();
+            //bool retVal = false;
+            //if (boolNumber == 0)
+            //{
+            //    retVal = false;
+            //}
+            //else if (boolNumber == 1)
+            //{
+            //    retVal = true;
+            //}
+            //else
+            //{
+            //    return GetBool();
+            //}
+
+            //return retVal;
         }
 
-        public int GetIntNumber()
+        public int GetIntInput()
         {
-            int inputNumber;
-            try
+            string inputStr;
+            int inputNumber = 0;
+            bool isNumber = false;
+
+            while(!isNumber)
             {
-                inputNumber = getNumberFromUser();
-            }
-            catch (FormatException e)
-            {
-                PrintMessage(Messages.InputIsNotANumberError);
-                inputNumber = GetIntNumber();
+                try
+                {
+                    inputStr = GetStringInput();
+                    inputNumber = int.Parse(inputStr);
+                    isNumber = true;
+                }
+                catch (FormatException ex)
+                {
+                    PrintMessage("Invalid Number, please try again...");
+                }
             }
 
+            return inputNumber;
+        }
 
-            //string inputStr = GetInput();
-            //int inputNum;
-            //bool isNumber = int.TryParse(inputStr, out inputNum);
+        public float GetFloatInput()
+        {
+            string inputStr;
+            float inputFloat = 0;
+            bool isFloat = false;
+
+            while (!isFloat)
+            {
+                try
+                {
+                    inputStr = GetStringInput();
+                    inputFloat = int.Parse(inputStr);
+                    isFloat = true;
+                }
+                catch (FormatException ex)
+                {
+                    PrintMessage("Invalid Number, please try again...");
+                }
+            }
+
+            return inputFloat;
+
+
+            //string inputStr = GetStringInput();
+            //float inputNum;
+            //bool isNumber = float.TryParse(inputStr, out inputNum);
             //if (!isNumber)
             //{
             //    PrintMessage(Messages.InvalidNumberEntered);
-            //    return GetIntNumber();
+            //    return GetFloatInput();
             //}
             //else
             //{
             //    return inputNum;
             //}
 
-            return inputNumber;
         }
 
-        private int getNumberFromUser()
-        {
-            string input = GetInput();
-
-            return int.Parse(input);
-        }
-
-        public float GetFloatInput()
-        {
-            string inputStr = GetInput();
-            float inputNum;
-            bool isNumber = float.TryParse(inputStr, out inputNum);
-            if (!isNumber)
-            {
-                PrintMessage(Messages.InvalidNumberEntered);
-                return GetFloatInput();
-            }
-            else
-            {
-                return inputNum;
-            }
-        }
-
-        ////////////////////////////////////////////////////////
+        
         // Print output to user
 
         public void PrintMenu()
@@ -230,8 +264,7 @@ namespace Ex03.ConsoleUI
         }
 
 
-        ////////////////////////////////////////////////////////
-        // GRAY METHODS, CHECK IF SOMEONE USES THEM AT ALL --> IF NOT (AND IF THEY ARE REALLY NOT NEEDED), WE CAN DELETE THEM
+        // TODO GRAY METHODS, CHECK IF SOMEONE USES THEM AT ALL --> IF NOT (AND IF THEY ARE REALLY NOT NEEDED), WE CAN DELETE THEM
 
         public void ShowOptions<T>(string i_Message, string[] i_Options)
         {
@@ -247,21 +280,21 @@ namespace Ex03.ConsoleUI
         {
             PrintMessage(Messages.AskingTypeOfFuel);
 
-            return GetInput();
+            return GetStringInput();
         }
 
         public string AskingAmountOfFuel()
         {
             PrintMessage(Messages.AskingAmountOfFuel);
 
-            return GetInput();
+            return GetStringInput();
         }
 
         public string AskingAmountOfMinutes()
         {
             PrintMessage(Messages.AskingAmountOfMinutes);
 
-            return GetInput();
+            return GetStringInput();
         }
 
         public void CarAlreadyInGarage()
@@ -273,7 +306,7 @@ namespace Ex03.ConsoleUI
         {
             PrintMessage(Messages.GetNewStatusOfVehicle);
 
-            return GetInput();
+            return GetStringInput();
         }
 
         public void WrongNumberOfTypeOfFuel()

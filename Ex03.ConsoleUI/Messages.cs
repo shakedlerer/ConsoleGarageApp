@@ -30,6 +30,7 @@ namespace Ex03.ConsoleUI
             InvalidNumberEntered = string.Format("Invalid Option selected, please try again..{0}", Environment.NewLine),
             InputIsNotANumberError = string.Format("Input is not a number, please try again..{0}", Environment.NewLine),
             InvalidPhoneNumberError = "Invalid phone number entered, please try again..",
+             InvalidLicenseNumberError = "Invalid license number entered, please try again..",
              VehicleDoesntExistError = "Vehicle does not exist in garage, please try again",
              InvalidNameError = "Error: invalid Owner Name. please try again..",
             GarageMenu = string.Format(@"

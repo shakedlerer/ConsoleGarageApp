@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -21,23 +22,29 @@ namespace Ex03.GarageLogic
             return m_Vehicles.ContainsKey(i_LicenseId);
         }
 
-        //public void FillFuel(string i_LicenseId, float i_amountOfFuel, eFuelType i_typeOfFuel)
-        //{
-        //    FuelEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as FuelEngine;
-        //    eng.Fill(i_amountOfFuel, i_typeOfFuel);
-        //}
-
         public void FillFuel(string i_LicenseId, float i_amountOfFuel, VehiclesEnums.eFuelType i_typeOfFuel)
         {
             FuelEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as FuelEngine;
-            eng.Fill(i_amountOfFuel, i_typeOfFuel);
+
+            if(eng == null)
+            {
+                throw new ArgumentException(string.Format("Vehicle {0} does not have Fuel engine", i_LicenseId));
+            }
+
+            eng.FillFuel(i_amountOfFuel, i_typeOfFuel);
         }
 
         public void FillElectric(string i_LicenseId, int i_amountOfMinutes)
         {
             float toHour = (i_amountOfMinutes / 60f);
             ElectricEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as ElectricEngine;
-            eng.FillEnergy(toHour);
+
+            if (eng == null)
+            {
+                throw new ArgumentException(string.Format("Vehicle {0} does not have Electric engine", i_LicenseId));
+            }
+
+            eng.ChargeBattery(toHour);
         }
 
         public string ShowFullDetailsByLicendeId(string i_LicenseId)
@@ -53,7 +60,7 @@ namespace Ex03.GarageLogic
         public void AddNewVehicle(VehicleTicket i_NewVehicleTicket)
         {
 
-            m_Vehicles.Add(i_NewVehicleTicket.Vehicle.License, i_NewVehicleTicket);
+            m_Vehicles.Add(i_NewVehicleTicket.Vehicle.GetLicenseNumber(), i_NewVehicleTicket);
         }
 
         public StringBuilder AllLicenseNumbers()
@@ -68,22 +75,6 @@ namespace Ex03.GarageLogic
 
             return sb;
         }
-
-        //public StringBuilder AllLicenseNumbersByStatus(eVehicleStatus i_VehicleStatus)
-        //{
-        //    StringBuilder sb = new StringBuilder();
-
-        //    foreach (KeyValuePair<string, VehicleTicket> record in m_Vehicles)
-        //    {
-        //        if (record.Value.Status == i_VehicleStatus)
-        //        {
-        //            sb.Append(record.Key);
-        //            sb.Append(Environment.NewLine);
-        //        }
-        //    }
-
-        //    return sb;
-        //}
 
         public StringBuilder AllLicenseNumbersByStatus(VehiclesEnums.eVehicleStatus i_VehicleStatus)
         {
@@ -100,20 +91,11 @@ namespace Ex03.GarageLogic
             return sb;
         }
 
-        //public VehicleTicket AddNewVehicle(string i_LicenseNumber, eVehicleType i_VehicleType)
-        //{
-        //    Vehicle vehicle = m_Factory.CreateNewCarOfType(i_VehicleType, i_LicenseNumber);
-        //    VehicleTicket newVehicleTicket = new VehicleTicket(vehicle);
-        //    m_Vehicles.Add(vehicle.License, newVehicleTicket);
-
-        //    return newVehicleTicket;
-        //}
-
         public VehicleTicket AddNewVehicle(string i_LicenseNumber, VehiclesEnums.eVehicleType i_VehicleType)
         {
             Vehicle vehicle = m_Factory.CreateNewVehicleOfType(i_VehicleType, i_LicenseNumber);
             VehicleTicket newVehicleTicket = new VehicleTicket(vehicle);
-            m_Vehicles.Add(vehicle.License, newVehicleTicket);
+            m_Vehicles.Add(vehicle.GetLicenseNumber(), newVehicleTicket);
 
             return newVehicleTicket;
         }
@@ -121,45 +103,20 @@ namespace Ex03.GarageLogic
         public VehicleTicket AddNewVehicle(Vehicle i_Vehicle)
         {
             VehicleTicket newVehicleTicket = new VehicleTicket(i_Vehicle);
-            m_Vehicles.Add(i_Vehicle.License, newVehicleTicket);
+            m_Vehicles.Add(i_Vehicle.GetLicenseNumber(), newVehicleTicket);
 
             return newVehicleTicket;
         }
-
-        //public void setInProgressStatus(string i_LicenseId)
-        //{
-        //    UpdateVehicleStatus(i_LicenseId, eVehicleStatus.InProgress);
-        //}
 
         public void setInProgressStatus(string i_LicenseId)
         {
             UpdateVehicleStatus(i_LicenseId, VehiclesEnums.eVehicleStatus.InProgress);
         }
 
-        //public void UpdateVehicleStatus(string i_LicenseId, eVehicleStatus i_NewStatus)
-        //{
-        //    m_Vehicles[i_LicenseId].Status = i_NewStatus;
-        //}
-
         public void UpdateVehicleStatus(string i_LicenseId, VehiclesEnums.eVehicleStatus i_NewStatus)
         {
             m_Vehicles[i_LicenseId].Status = i_NewStatus;
         }
-
-        //public void UpdateVehicleStatus(string i_LicenseId, string i_NewStatus)
-        //{
-        //    eVehicleStatus newStatus;
-        //    try
-        //    {
-        //        newStatus = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_NewStatus);
-        //        m_Vehicles[i_LicenseId].Status = newStatus;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new ArgumentException("Error: Invalid Value was entered.");
-
-        //    }
-        //}
 
         public string GetVehicleDescription(string i_LicenseId)
         {
@@ -167,14 +124,13 @@ namespace Ex03.GarageLogic
 
             string vehicleDescription = CreateDescriptionOfVehicle(ticket.Vehicle);
             string ticketDescription = string.Format(@"
-            -Vehicle Description-
-            License ID:{0}
-            Status:{1}
-            Owner name:{2}
-            Phone Number:{3}
-            ------------
-            {4}
-            ", i_LicenseId, ticket.Status, ticket.Owner, ticket.Phone, vehicleDescription);
+-Vehicle Description-
+License Number: {0}
+Status In Garage: {1}
+Owner Name: {2}
+Owner Phone Number: {3}
+------------
+{4}", i_LicenseId, ticket.Status, ticket.Owner, ticket.Phone, vehicleDescription);
 
             return ticketDescription;
         }
@@ -195,4 +151,56 @@ namespace Ex03.GarageLogic
             return description.ToString();
         }
     }
+
+    // TODO Delete comments below:
+
+    //public StringBuilder AllLicenseNumbersByStatus(eVehicleStatus i_VehicleStatus)
+    //{
+    //    StringBuilder sb = new StringBuilder();
+
+    //    foreach (KeyValuePair<string, VehicleTicket> record in m_Vehicles)
+    //    {
+    //        if (record.Value.Status == i_VehicleStatus)
+    //        {
+    //            sb.Append(record.Key);
+    //            sb.Append(Environment.NewLine);
+    //        }
+    //    }
+
+    //    return sb;
+    //}
+
+    //public VehicleTicket AddNewVehicle(string i_LicenseNumber, eVehicleType i_VehicleType)
+    //{
+    //    Vehicle vehicle = m_Factory.CreateNewCarOfType(i_VehicleType, i_LicenseNumber);
+    //    VehicleTicket newVehicleTicket = new VehicleTicket(vehicle);
+    //    m_Vehicles.Add(vehicle.License, newVehicleTicket);
+
+    //    return newVehicleTicket;
+    //}
+
+    //public void setInProgressStatus(string i_LicenseId)
+    //{
+    //    UpdateVehicleStatus(i_LicenseId, eVehicleStatus.InProgress);
+    //}
+
+    //public void UpdateVehicleStatus(string i_LicenseId, eVehicleStatus i_NewStatus)
+    //{
+    //    m_Vehicles[i_LicenseId].Status = i_NewStatus;
+    //}
+
+    //public void UpdateVehicleStatus(string i_LicenseId, string i_NewStatus)
+    //{
+    //    eVehicleStatus newStatus;
+    //    try
+    //    {
+    //        newStatus = (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), i_NewStatus);
+    //        m_Vehicles[i_LicenseId].Status = newStatus;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw new ArgumentException("Error: Invalid Value was entered.");
+
+    //    }
+    //}
 }
