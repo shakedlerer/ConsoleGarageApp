@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
             m_MaxEnergyUnit = i_MaxEnergyUnit;
         }
 
-      public void FillEnergy(float i_AmoutToFill)
+      public void FillEnergy(float i_AmountToFill)
         {
             if (m_EnergyUnitLeft + i_AmountToFill <= m_MaxEnergyUnit)
             {

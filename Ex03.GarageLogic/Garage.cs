@@ -124,8 +124,8 @@ namespace Ex03.GarageLogic
 
             string vehicleDescription = CreateDescriptionOfVehicle(ticket.Vehicle);
           
-            string ticketDescription = string.Format(@"
--Vehicle Description-
+            string ticketDescription = string.Format(
+@"-Vehicle Description-
 License Number: {0}
 Status In Garage: {1}
 Owner Name: {2}

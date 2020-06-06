@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException(string.Format(@"Error: Incorrect Fuel entered, correct fuel type is {0}", r_FuelType));
+                throw new ArgumentException(string.Format(@"Error: Incorrect Fuel entered, correct fuel type is {0} {1}{1}{1}", r_FuelType, Environment.NewLine));
             }
         }
 
