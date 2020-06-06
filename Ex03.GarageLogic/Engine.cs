@@ -26,15 +26,19 @@ namespace Ex03.GarageLogic
             m_MaxEnergyUnit = i_MaxEnergyUnit;
         }
 
-        public void FillEnergy(float i_AmoutToFill)
+      public void FillEnergy(float i_AmoutToFill)
         {
-            if (m_EnergyUnitLeft + i_AmoutToFill <= m_MaxEnergyUnit)
+            if (m_EnergyUnitLeft + i_AmountToFill <= m_MaxEnergyUnit)
             {
-                m_EnergyUnitLeft += i_AmoutToFill;
+                m_EnergyUnitLeft += i_AmountToFill;
+                Console.WriteLine(string.Format(@"Successfully filled!
+
+"));
             }
             else
             {
                 float ableToFill = m_MaxEnergyUnit - m_EnergyUnitLeft;
+                Console.WriteLine();
                 throw new ValueOutOfRangeException(k_MinToFill, ableToFill);
             }
         }

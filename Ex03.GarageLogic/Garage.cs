@@ -123,6 +123,7 @@ namespace Ex03.GarageLogic
             VehicleTicket ticket = m_Vehicles[i_LicenseId];
 
             string vehicleDescription = CreateDescriptionOfVehicle(ticket.Vehicle);
+          
             string ticketDescription = string.Format(@"
 -Vehicle Description-
 License Number: {0}
@@ -131,7 +132,7 @@ Owner Name: {2}
 Owner Phone Number: {3}
 ------------
 {4}", i_LicenseId, ticket.Status, ticket.Owner, ticket.Phone, vehicleDescription);
-
+          
             return ticketDescription;
         }
 
