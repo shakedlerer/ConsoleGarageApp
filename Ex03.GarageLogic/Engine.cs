@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
             set { m_MaxEnergyUnit = value; }
         }
 
-        public Engine(float i_MaxEnergyUnit)
+        protected Engine(float i_MaxEnergyUnit)
         {
             m_MaxEnergyUnit = i_MaxEnergyUnit;
         }

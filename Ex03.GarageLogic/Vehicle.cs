@@ -9,14 +9,12 @@ namespace Ex03.GarageLogic
         protected List<Tire> m_SetOfTires;
         protected Engine m_Engine;
 
-        // C'TOR :
-        public Vehicle(string i_LicenseNumber, Engine i_Engine)
+        protected Vehicle(string i_LicenseNumber, Engine i_Engine)
         {
             r_LicenseNumber = i_LicenseNumber;
             m_Engine = i_Engine;
         }
 
-        // PROPERTIES :
         public string ModelName
         {
             get { return m_Model; }
@@ -58,7 +56,7 @@ namespace Ex03.GarageLogic
             get { return m_SetOfTires.Count; }
         }
 
-        public string TiresManufactor
+        public string TiresManufacturer
         {
             get { return m_SetOfTires[0].Manufacturer; }
             set { SetTiresManufacturer(value); }
@@ -74,7 +72,6 @@ namespace Ex03.GarageLogic
             get { return m_SetOfTires[0].MaxAirPressure; }
         }
 
-        // METHODS:
         public void Fill(float i_ToFill)
         {
             m_Engine.FillEnergy(i_ToFill);
@@ -91,19 +88,11 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void FillAllTiresToMaximum()
+        public void FillTiresToMax()
         {
             foreach (Tire wheel in m_SetOfTires)
             {
                 wheel.FillToMaximum();
-            }
-        }
-
-        public void SetTiresAirPressure(float i_PressureToSet)
-        {
-            foreach (Tire wheel in m_SetOfTires)
-            {
-                wheel.AirPressure = i_PressureToSet;
             }
         }
 

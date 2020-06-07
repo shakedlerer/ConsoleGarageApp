@@ -18,8 +18,6 @@ namespace Ex03.ConsoleUI
 7. Show all details of vehicle
 8. Exit");
 
-        // Get input from user METHODS
-
         public string GetStringInput()
         {
             Console.WriteLine("><><><");
@@ -32,8 +30,10 @@ namespace Ex03.ConsoleUI
         public int GetNumberFromOptions(string[] i_Options, string i_Title)
         {
             int selectedNumber;
-
-            PrintMessage(i_Title);
+            if(i_Title != null)
+            {
+                PrintMessage(i_Title);
+            }
             PrintOptionsToChoose(i_Options);
             selectedNumber = GetNumberInRange(1, i_Options.Length);
 
@@ -42,71 +42,69 @@ namespace Ex03.ConsoleUI
 
         public string GetLicenseNumber()
         {
-            const string k_AskingLicenseNumber = "Please enter vehicle's license number:";
-            const string k_InvalidPhoneNumberError = "Error: Invalid license number entered, please try again.";
-            int number;
+            const string k_EnterLicenseNumber = "Please enter vehicle's license number:";
+            const string k_InvalidPhoneNumber = "Error: Invalid license number entered, please try again.";
+            string licenseNumberStr;
+            int licenseNumberInt;
             bool validLicenseNumber = false;
 
-            PrintMessage(k_AskingLicenseNumber + Environment.NewLine);
-            string licenseNumber = GetStringInput();
+            PrintMessage(k_EnterLicenseNumber);
+            licenseNumberStr = GetStringInput();
 
             while (!validLicenseNumber)
             {
-                validLicenseNumber = int.TryParse(licenseNumber, out number);
-
+                validLicenseNumber = int.TryParse(licenseNumberStr, out licenseNumberInt);
                 if (!validLicenseNumber)
                 {
-                    PrintMessage(k_InvalidPhoneNumberError + Environment.NewLine);
-                    licenseNumber = GetStringInput();
+                    PrintMessage(k_InvalidPhoneNumber);
+                    licenseNumberStr = GetStringInput();
                 }
             }
 
-            return licenseNumber;
+            return licenseNumberStr;
         }
 
         public string GetPhoneNumber()
         {
             const string k_EnterPhoneNumber = "Please enter owner's phone number:";
-            const string k_InvalidPhoneNumberError = "Error: Invalid phone number entered, please try again.";
-            int number;
+            const string k_InvalidPhoneNumber = "Error: Invalid phone number entered, please try again.";
+            int phoneNumberInt;
+            string phoneNumberStr;
             bool validPhoneNumber = false;
-            string phoneNumber;
 
-            PrintMessage(k_EnterPhoneNumber + Environment.NewLine);
-            phoneNumber = GetStringInput();
+            PrintMessage(k_EnterPhoneNumber);
+            phoneNumberStr = GetStringInput();
             while (!validPhoneNumber)
             {
-                validPhoneNumber = int.TryParse(phoneNumber, out number);
-
+                validPhoneNumber = int.TryParse(phoneNumberStr, out phoneNumberInt);
                 if (!validPhoneNumber)
                 {
-                    PrintMessage(k_InvalidPhoneNumberError + Environment.NewLine);
-                    phoneNumber = GetStringInput();
+                    PrintMessage(k_InvalidPhoneNumber);
+                    phoneNumberStr = GetStringInput();
                 }
             }
 
-            return phoneNumber;
+            return phoneNumberStr;
         }
 
         public string GetOwnerName()
         {
             const string k_EnterOwnerName = "Please enter owner's name:";
-            const string k_InvalidNameError = "Error: Invalid name entered, please try again.";
+            const string k_InvalidName = "Error: Invalid name entered, please try again.";
             string ownerName = " ";
             bool invalidOwnerName = false;
 
-            PrintMessage(k_EnterOwnerName + Environment.NewLine);
+            PrintMessage(k_EnterOwnerName);
             while (!invalidOwnerName)
             {
                 invalidOwnerName = true;
                 ownerName = GetStringInput();
-
                 foreach (char ch in ownerName)
                 {
                     if(!char.IsLetter(ch))
                     {
                         invalidOwnerName = false;
-                        PrintMessage(k_InvalidNameError + Environment.NewLine);
+                        PrintMessage(k_InvalidName);
                         break;
                     }
                 }
@@ -115,10 +113,11 @@ namespace Ex03.ConsoleUI
             return ownerName;
         }
 
-        public int GetOptionInput()
+        public int GetOptionFromMenu()
         {
             int selectedOption;
             selectedOption = GetNumberInRange(1, k_NumberOfMenuOptions);
+
             return selectedOption;
         }
 
@@ -130,7 +129,7 @@ namespace Ex03.ConsoleUI
 
             while (!inputIOnRange)
             {
-                PrintMessage(k_InvalidOptionSelected + Environment.NewLine);
+                PrintMessage(k_InvalidOptionSelected);
                 selectedNumber = GetIntInput();
                 inputIOnRange = selectedNumber >= i_Min && selectedNumber <= i_Max;
             }
@@ -140,15 +139,15 @@ namespace Ex03.ConsoleUI
 
         public bool GetBoolInput()
         {
-            string[] options = { "True", "False" };
-            int selectedNumber = GetNumberFromOptions(options, " ");
+            string[] boolOptions = { "True", "False" };
+            int selectedNumber = GetNumberFromOptions(boolOptions, null);
 
             return selectedNumber == 1;
         }
 
         public int GetIntInput()
         {
-            const string k_InputIsNotANumberError = "Error: Input is not a number, please try again.";
+            const string k_InputNotANumber = "Error: Input is not a number, please try again.";
             string inputStr;
             int inputNumber = 0;
             bool isNumber = false;
@@ -163,7 +162,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch (FormatException ex)
                 {
-                    PrintMessage(k_InputIsNotANumberError + Environment.NewLine);
+                    PrintMessage(k_InputNotANumber);
                 }
             }
 
@@ -172,7 +171,7 @@ namespace Ex03.ConsoleUI
 
         public float GetFloatInput()
         {
-            const string k_InputIsNotANumberError = "Error: Input is not a number, please try again.";
+            const string k_InputNotANumber = "Error: Input is not a number, please try again.";
             string inputStr;
             float inputFloat = 0;
             bool isFloat = false;
@@ -187,46 +186,30 @@ namespace Ex03.ConsoleUI
                 }
                 catch (FormatException ex)
                 {
-                    PrintMessage(k_InputIsNotANumberError);
+                    PrintMessage(k_InputNotANumber);
                 }
             }
 
             return inputFloat;
-
-            //string inputStr = GetStringInput();
-            //float inputNum;
-            //bool isNumber = float.TryParse(inputStr, out inputNum);
-            //if (!isNumber)
-            //{
-            //    PrintMessage(Messages.InvalidNumberEntered);
-            //    return GetFloatInput();
-            //}
-            //else
-            //{
-            //    return inputNum;
-            //}
         }
-        // Print output to user METHODS
 
         public void PrintMenu()
         {
-            Console.WriteLine(k_GarageMenu);
+            PrintMessage(k_GarageMenu);
         }
 
         public void PrintMessage(string i_MessageToPrint)
         {
-            Console.Write(i_MessageToPrint);
+            Console.WriteLine(i_MessageToPrint);
         }
 
         public void PrintOptionsToChoose(string[] i_Options)
         {
             for (int i = 0; i < i_Options.Length; i++)
             {
-                string option = string.Format("{2}{0} - {1}", i + 1, i_Options[i], Environment.NewLine);
+                string option = string.Format("{0} - {1}", i + 1, i_Options[i]);
                 PrintMessage(option);
             }
-
-            PrintMessage(Environment.NewLine);
         }
     }
 }

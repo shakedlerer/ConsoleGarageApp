@@ -1,7 +1,9 @@
 ﻿namespace Ex03.GarageLogic
 {
-    class ElectricEngine : Engine
+    public class ElectricEngine : Engine
     {
+        const string k_InvalidChargingTime = "Error: Can't charge this much time, please try again";
+
         public ElectricEngine(float i_MaxHours) :
             base(i_MaxHours)
         {
@@ -20,8 +22,7 @@
             }
             catch(ValueOutOfRangeException e)
             {
-                string msg = "Error: Can't charge this much time, please try again";
-                throw new ValueOutOfRangeException(msg, e.MinValue, e.MaxValue);
+                throw new ValueOutOfRangeException(k_InvalidChargingTime, e.MinValue, e.MaxValue);
             }
         }
     }
