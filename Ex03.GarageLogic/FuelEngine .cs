@@ -2,8 +2,10 @@
 
 namespace Ex03.GarageLogic
 {
-    class FuelEngine : Engine
+    public class FuelEngine : Engine
     {
+        const string k_InvalidFuelAmount = "Error: Can't fill this much fuel, please try again";
+        const string k_InvalidFuelType = "Error: Incorrect fuel type selected, the correct fuel type is {0} {1}{1}";
         private VehiclesEnums.eFuelType m_FuelType;
 
         public FuelEngine(float i_MaxFuelCapacity, VehiclesEnums.eFuelType i_FuelType) :
@@ -22,13 +24,12 @@ namespace Ex03.GarageLogic
                 }
                 catch (ValueOutOfRangeException e)
                 {
-                    string msg = "Error: Can't fill this much fuel, please try again";
-                    throw new ValueOutOfRangeException(msg, e.MinValue, e.MaxValue);
+                    throw new ValueOutOfRangeException(k_InvalidFuelAmount, e.MinValue, e.MaxValue);
                 }
             }
             else
             {
-                throw new ArgumentException(string.Format("Error: Incorrect fuel type selected, the correct fuel type is {0} {1}{1}{1}", m_FuelType, Environment.NewLine));
+                throw new ArgumentException(string.Format(k_InvalidFuelType, m_FuelType, Environment.NewLine));
             }
         }
 
@@ -40,19 +41,7 @@ namespace Ex03.GarageLogic
         public VehiclesEnums.eFuelType FuelType
         {
             get { return m_FuelType; }
-
-            set
-            {
-                if (Enum.IsDefined(typeof(VehiclesEnums.eFuelType), value))
-                {
-                    m_FuelType = value;
-                }
-                else
-                {
-                    string errorMessage = string.Format("Error: Invalid Fuel type");
-                    throw new ArgumentException(errorMessage);
-                }
-            }
+            set { m_FuelType = value; }
         }
     }
 }

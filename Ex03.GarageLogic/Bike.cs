@@ -2,20 +2,19 @@
 
 namespace Ex03.GarageLogic
 {
-    class Bike : Vehicle
+    public class Bike : Vehicle
     {
         private const int k_BikeNumberOfWheels = 2;
         private const float k_BikeMaxPressure = 30f;
+        private const string k_InvalidEngineSize = "Error: Invalid engine size, please try again";
         private VehiclesEnums.eBikeLicenseType m_LicenseType;
         private int m_EngineSize;
 
-        // C'TOR :
         public Bike(string i_LicenseNumber, Engine i_Engine) : base(i_LicenseNumber, i_Engine)
         {
             initializeTires(k_BikeMaxPressure, k_BikeNumberOfWheels);
         }
 
-        // PROPERTIES :
         public VehiclesEnums.eBikeLicenseType LicenseType
         {
             get { return m_LicenseType; }
@@ -30,7 +29,7 @@ namespace Ex03.GarageLogic
             {
                 if(value <= 0)
                 {
-                    throw new ArgumentException("Error: Negative engine size, please try again.");
+                    throw new ArgumentException(k_InvalidEngineSize);
                 }
 
                 m_EngineSize = value;

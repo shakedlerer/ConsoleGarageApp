@@ -5,16 +5,15 @@ namespace Ex03.GarageLogic
 {
     public class VehicleFactory
     {
-        private const float k_CarMaxElectricEngTime = 2.1f;
-        private const float k_BikeMaxElectricEngTime = 1.2f;
-
+        private const float k_CarMaxEngineChargingTime = 2.1f;
+        private const float k_BikeMaxEngineChargingTime = 1.2f;
         private const int k_CarMaxFuelCapacity = 60;
         private const int k_BikeMaxFuelCapacity = 7;
         private const int k_TruckMaxFuelCapacity = 120;
-
         private const VehiclesEnums.eFuelType k_CarFuelType = VehiclesEnums.eFuelType.Octan96;
         private const VehiclesEnums.eFuelType k_BikeFuelType = VehiclesEnums.eFuelType.Octan95;
         private const VehiclesEnums.eFuelType k_TruckFuelType = VehiclesEnums.eFuelType.Soler;
+        private const string k_InvalidVehicleType = "Error: Invalid vehicle type {0}";
 
         public Vehicle CreateNewVehicleOfType(VehiclesEnums.eVehicleType i_VehicleType, string i_LicenseNumber)
         {
@@ -28,7 +27,7 @@ namespace Ex03.GarageLogic
                     vehicle = new Car(i_LicenseNumber, engine);
                     break;
                 case VehiclesEnums.eVehicleType.ElectricCar:
-                    engine = new ElectricEngine(k_CarMaxElectricEngTime);
+                    engine = new ElectricEngine(k_CarMaxEngineChargingTime);
                     vehicle = new Car(i_LicenseNumber, engine);
                     break;
                 case VehiclesEnums.eVehicleType.FuelBike:
@@ -36,7 +35,7 @@ namespace Ex03.GarageLogic
                     vehicle = new Bike(i_LicenseNumber, engine);
                     break;
                 case VehiclesEnums.eVehicleType.ElectricBike:
-                    engine = new ElectricEngine(k_BikeMaxElectricEngTime);
+                    engine = new ElectricEngine(k_BikeMaxEngineChargingTime);
                     vehicle = new Bike(i_LicenseNumber, engine);
                     break;
                 case VehiclesEnums.eVehicleType.Truck:
@@ -44,22 +43,10 @@ namespace Ex03.GarageLogic
                     vehicle = new Truck(i_LicenseNumber, engine);
                     break;
                 default:
-                    throw new ArgumentException(string.Format("Error: Invalid vehicle type {0}", i_VehicleType));
+                    throw new ArgumentException(string.Format(k_InvalidVehicleType, i_VehicleType));
             }
 
             return vehicle;
-        }
-
-        public List<Tire> CreateSetOfTires(float i_MaxPressure, int i_NumOfWheels)
-        {
-            List<Tire> tires = new List<Tire>(i_NumOfWheels);
-            for (int i = 0; i < i_NumOfWheels; i++)
-            {
-                Tire tire = new Tire(i_MaxPressure);
-                tires.Add(tire);
-            }
-
-            return tires;
         }
     }
 }

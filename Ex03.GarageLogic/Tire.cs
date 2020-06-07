@@ -2,6 +2,7 @@
 {
     public class Tire
     {
+        private const string k_InvalidAirAmount = "Can't fill this amount of air in tires";
         private const int k_MinToFill = 0;
         private readonly float r_MaxPressure;
         private float m_CurrentPressure;
@@ -10,13 +11,7 @@
         public Tire(float i_MaxPressure)
         {
             r_MaxPressure = i_MaxPressure;
-        }
-
-        public Tire(float i_CurrentPressure, float i_MaxPressure, string i_Manufacturer)
-        {
-            m_CurrentPressure = i_CurrentPressure;
-            r_MaxPressure = i_MaxPressure;
-            m_Manufacturer = i_Manufacturer;
+            m_CurrentPressure = 0;
         }
 
         public string Manufacturer
@@ -28,16 +23,7 @@
         public float AirPressure
         {
             get { return m_CurrentPressure; }
-
-            set
-            {
-                if (value < k_MinToFill || value > r_MaxPressure)
-                {
-                    throw new ValueOutOfRangeException("Can't fill this amount of air", k_MinToFill, r_MaxPressure);
-                }
-
-                m_CurrentPressure = value;
-            }
+            set { m_CurrentPressure = value; }
         }
 
         public float MaxAirPressure
