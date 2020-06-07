@@ -4,8 +4,8 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        protected string m_Model;
         protected readonly string r_LicenseNumber;
+        protected string m_Model;
         protected List<Tire> m_SetOfTires;
         protected Engine m_Engine;
 
@@ -19,8 +19,8 @@ namespace Ex03.GarageLogic
         // PROPERTIES :
         public string ModelName
         {
-            set { m_Model = value; }
             get { return m_Model; }
+            set { m_Model = value; }
         }
 
         public Engine Engine
@@ -60,8 +60,8 @@ namespace Ex03.GarageLogic
 
         public string TiresManufactor
         {
-            set { SetTiresManufacturer(value); }
             get { return m_SetOfTires[0].Manufacturer; }
+            set { SetTiresManufacturer(value); }
         }
 
         public float CurrentAirInWheels
@@ -98,6 +98,7 @@ namespace Ex03.GarageLogic
                 wheel.FillToMaximum();
             }
         }
+
         public void SetTiresAirPressure(float i_PressureToSet)
         {
             foreach (Tire wheel in m_SetOfTires)

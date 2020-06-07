@@ -39,6 +39,8 @@ namespace Ex03.GarageLogic
 
         public VehiclesEnums.eFuelType FuelType
         {
+            get { return m_FuelType; }
+
             set
             {
                 if (Enum.IsDefined(typeof(VehiclesEnums.eFuelType), value))
@@ -51,7 +53,6 @@ namespace Ex03.GarageLogic
                     throw new ArgumentException(errorMessage);
                 }
             }
-            get { return m_FuelType; }
         }
     }
 }
