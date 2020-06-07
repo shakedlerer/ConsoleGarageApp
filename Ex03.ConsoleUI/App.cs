@@ -40,28 +40,28 @@ namespace Ex03.ConsoleUI
         {
             switch (i_Selection)
             {
-                case (1):
+                case 1:
                     AddNewVehicle();
                     break;
-                case (2):
+                case 2:
                     ShowVehiclesLicenseNumbers();
                     break;
-                case (3):
+                case 3:
                     ChangeVehiclesStatus();
                     break;
-                case (4):
+                case 4:
                     FillTiresToMax();
                     break;
-                case (5):
+                case 5:
                     FillFuelInVehicle();
                     break;
-                case (6):
+                case 6:
                     ChargeElectricVehicle();
                     break;
-                case (7):
+                case 7:
                     ShowVehcilesDetails();
                     break;
-                case (8):
+                case 8:
                     Environment.Exit(1);
                     break;
 
@@ -76,9 +76,12 @@ namespace Ex03.ConsoleUI
             const string k_ShowVehiclesLicenseNumbers = "Please choose which vehicle's license numbers to show (by status or all)";
             const string k_ShowLicenseNumbersList = "The desired vehicle license numbers list is:";
             const int k_AllVehicles = 4;
+            const string k_AllVehiclesOption = "All Vehicles";
             string[] statusOptions = Enum.GetNames(typeof(VehiclesEnums.eVehicleStatus));
-            int option = r_Ui.GetNumberFromOptions(statusOptions, k_ShowVehiclesLicenseNumbers);
 
+            Array.Resize(ref statusOptions, k_AllVehicles);
+            statusOptions[k_AllVehicles - 1] = k_AllVehiclesOption;
+            int option = r_Ui.GetNumberFromOptions(statusOptions, k_ShowVehiclesLicenseNumbers);
             r_Ui.PrintMessage(k_ShowLicenseNumbersList + Environment.NewLine);
             if (option == k_AllVehicles)
             {
@@ -88,6 +91,7 @@ namespace Ex03.ConsoleUI
             {
                 ShowLicenseNumberByStatus((VehiclesEnums.eVehicleStatus)option);
             }
+
             r_Ui.PrintMessage(Environment.NewLine + Environment.NewLine);
         }
 
@@ -277,7 +281,7 @@ namespace Ex03.ConsoleUI
             {
                 setEnumProperty(i_PropertyToSet, i_Vehicle);
             }
-            else if (fieldType == typeof(Boolean))
+            else if (fieldType == typeof(bool))
             {
                 setBooleanProperty(i_PropertyToSet, i_Vehicle);
             }
@@ -308,7 +312,7 @@ namespace Ex03.ConsoleUI
         private void setBooleanProperty(PropertyInfo i_PropertyToSet, Vehicle i_Vehicle)
         {
             string title = string.Format("Select the value for - {0}:", i_PropertyToSet.Name);
-            r_Ui.PrintMessage(title + Environment.NewLine);
+            r_Ui.PrintMessage(title);
             bool boolValue = r_Ui.GetBoolInput();
             i_PropertyToSet.SetValue(i_Vehicle, boolValue, null);
         }

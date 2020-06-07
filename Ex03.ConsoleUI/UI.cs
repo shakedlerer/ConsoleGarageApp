@@ -4,6 +4,7 @@ namespace Ex03.ConsoleUI
 {
     public class UI
     {
+        private const int k_NumberOfMenuOptions = 8;
         private readonly string k_GarageMenu = string.Format(
 @" --------------------------------------------------
 |              Welcome to our Garage:              |
@@ -16,7 +17,6 @@ namespace Ex03.ConsoleUI
 6. Charge electric vehicle
 7. Show all details of vehicle
 8. Exit");
-        private const int k_NumberOfMenuOptions = 8;
 
         // Get input from user METHODS
 
@@ -140,7 +140,7 @@ namespace Ex03.ConsoleUI
 
         public bool GetBoolInput()
         {
-            string[] options = {"True", "False" };
+            string[] options = { "True", "False" };
             int selectedNumber = GetNumberFromOptions(options, " ");
 
             return selectedNumber == 1;
@@ -166,6 +166,7 @@ namespace Ex03.ConsoleUI
                     PrintMessage(k_InputIsNotANumberError + Environment.NewLine);
                 }
             }
+
             return inputNumber;
         }
 
@@ -204,9 +205,7 @@ namespace Ex03.ConsoleUI
             //{
             //    return inputNum;
             //}
-
         }
-
         // Print output to user METHODS
 
         public void PrintMenu()
@@ -226,6 +225,7 @@ namespace Ex03.ConsoleUI
                 string option = string.Format("{2}{0} - {1}", i + 1, i_Options[i], Environment.NewLine);
                 PrintMessage(option);
             }
+
             PrintMessage(Environment.NewLine);
         }
     }

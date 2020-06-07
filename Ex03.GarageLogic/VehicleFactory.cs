@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    class VehicleFactory
+    public class VehicleFactory
     {
         private const float k_CarMaxElectricEngTime = 2.1f;
         private const float k_BikeMaxElectricEngTime = 1.2f;
@@ -23,29 +23,30 @@ namespace Ex03.GarageLogic
 
             switch (i_VehicleType)
             {
-                case (VehiclesEnums.eVehicleType.FuelCar):
+                case VehiclesEnums.eVehicleType.FuelCar:
                     engine = new FuelEngine(k_CarMaxFuelCapacity, k_CarFuelType);
                     vehicle = new Car(i_LicenseNumber, engine);
                     break;
-                case (VehiclesEnums.eVehicleType.ElectricCar):
+                case VehiclesEnums.eVehicleType.ElectricCar:
                     engine = new ElectricEngine(k_CarMaxElectricEngTime);
                     vehicle = new Car(i_LicenseNumber, engine);
                     break;
-                case (VehiclesEnums.eVehicleType.FuelBike):
+                case VehiclesEnums.eVehicleType.FuelBike:
                     engine = new FuelEngine(k_BikeMaxFuelCapacity, k_BikeFuelType);
                     vehicle = new Bike(i_LicenseNumber, engine);
                     break;
-                case (VehiclesEnums.eVehicleType.ElectricBike):
+                case VehiclesEnums.eVehicleType.ElectricBike:
                     engine = new ElectricEngine(k_BikeMaxElectricEngTime);
                     vehicle = new Bike(i_LicenseNumber, engine);
                     break;
-                case (VehiclesEnums.eVehicleType.Truck):
+                case VehiclesEnums.eVehicleType.Truck:
                     engine = new FuelEngine(k_TruckMaxFuelCapacity, k_TruckFuelType);
                     vehicle = new Truck(i_LicenseNumber, engine);
                     break;
                 default:
                     throw new ArgumentException(string.Format("Error: Invalid vehicle type {0}", i_VehicleType));
             }
+
             return vehicle;
         }
 

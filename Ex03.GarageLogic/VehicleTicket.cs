@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Ex03.GarageLogic
 {
     public class VehicleTicket
@@ -10,10 +11,15 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return string.Format(@"{0}
+            return string.Format(
+@"{0}
 Phone Number:{1}
 Owner Name:{2}
-Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_VehicleStatus);
+Vehicle Status:{3}", 
+                m_Vehicle.ToString(), 
+                m_PhoneNumber, 
+                m_OwnerName, 
+                m_VehicleStatus);
         }
 
         public VehicleTicket(Vehicle i_Vehicle)
@@ -24,8 +30,8 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
 
         public VehiclesEnums.eVehicleStatus Status
         {
-            set { m_VehicleStatus = value; }
             get { return m_VehicleStatus; }
+            set { m_VehicleStatus = value; }
         }
 
         public Vehicle Vehicle
@@ -35,6 +41,8 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
 
         public string Phone
         {
+            get { return m_PhoneNumber; }
+
             set
             {
                 if (value != null && isValidNumber(value))
@@ -48,11 +56,12 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
                     throw new ArgumentException(errorMsg);
                 }
             }
-            get { return m_PhoneNumber; }
         }
 
         public string Owner
         {
+            get { return m_OwnerName; }
+
             set
             {
                 if (value != null && allCharsAreLetters(value))
@@ -66,12 +75,12 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
                     throw new ArgumentException(errorMsg);
                 }
             }
-            get { return m_OwnerName; }
         }
 
         private bool allCharsAreLetters(string I_Str)
         {
             bool isValid = true;
+
             foreach (char ch in I_Str)
             {
                 if (!char.IsLetter(ch))
@@ -87,6 +96,7 @@ Vehicle Status:{3}", m_Vehicle.ToString(), m_PhoneNumber, m_OwnerName, m_Vehicle
         {
             int number;
             bool retVal = false;
+
             if (int.TryParse(i_PhoneNumber, out number))
             {
                 retVal = true;

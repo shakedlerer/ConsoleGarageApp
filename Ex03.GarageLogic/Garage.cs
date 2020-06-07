@@ -8,20 +8,20 @@ namespace Ex03.GarageLogic
     public class Garage
     {
         private Dictionary<string, VehicleTicket> m_Vehicles;
-        VehicleFactory m_Factory;
+        private VehicleFactory m_Factory;
 
         public Garage()
         {
             m_Vehicles = new Dictionary<string, VehicleTicket>();
             m_Factory = new VehicleFactory();
-
         }
+
         public bool VehicleExistInGarage(string i_LicenseId)
         {
             return m_Vehicles.ContainsKey(i_LicenseId);
         }
 
-        public void FillFuel(string i_LicenseId, float i_amountOfFuel, VehiclesEnums.eFuelType i_typeOfFuel)
+        public void FillFuel(string i_LicenseId, float i_AmountOfFuel, VehiclesEnums.eFuelType i_TypeOfFuel)
         {
             FuelEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as FuelEngine;
 
@@ -30,18 +30,19 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException(string.Format("Error: Vehicle {0} does not have a fuel engine {1}{1}{1}", i_LicenseId, Environment.NewLine));
             }
 
-            eng.FillFuel(i_amountOfFuel, i_typeOfFuel);
+            eng.FillFuel(i_AmountOfFuel, i_TypeOfFuel);
         }
 
-        public void FillElectric(string i_LicenseId, int i_amountOfMinutes)
+        public void FillElectric(string i_LicenseId, int i_AmountOfMinutes)
         {
-            float toHour = (i_amountOfMinutes / 60f);
+            float toHour = i_AmountOfMinutes / 60f;
             ElectricEngine eng = m_Vehicles[i_LicenseId].Vehicle.Engine as ElectricEngine;
 
             if (eng == null)
             {
                 throw new ArgumentException(string.Format("Error: Vehicle {0} does not have an electric engine {1}{1}{1}", i_LicenseId, Environment.NewLine));
             }
+
             eng.ChargeBattery(toHour);
         }
 
@@ -85,6 +86,7 @@ namespace Ex03.GarageLogic
                     sb.Append(Environment.NewLine);
                 }
             }
+
             return sb;
         }
 
@@ -128,7 +130,12 @@ Status In Garage: {1}
 Owner Name: {2}
 Owner Phone Number: {3}
 ------------
-{4}", i_LicenseId, ticket.Status, ticket.Owner, ticket.Phone, vehicleDescription);
+{4}", 
+i_LicenseId, 
+ticket.Status, 
+ticket.Owner, 
+ticket.Phone, 
+vehicleDescription);
           
             return ticketDescription;
         }
