@@ -8,10 +8,10 @@ namespace Ex03.ConsoleUI
 {
     public class App
     {
-        private readonly UI r_Ui;
-        private readonly Garage r_Garage;
         private const string k_VehicleDoesntExist = "Error: Vehicle {0} doesn't exist in the garage {1}{1}";
         private const string k_InvalidMenuOption = "Error: Invalid option {0} was selected. {1}";
+        private readonly UI r_Ui;
+        private readonly Garage r_Garage;
 
         public App()
         {
@@ -102,7 +102,7 @@ namespace Ex03.ConsoleUI
         public void ShowAllLicenseNumberVehicle()
         {
             StringBuilder allLicenseNumbers = r_Garage.AllLicenseNumbers();
-            r_Ui.PrintMessage(allLicenseNumbers.ToString()+ Environment.NewLine);
+            r_Ui.PrintMessage(allLicenseNumbers.ToString() + Environment.NewLine);
         }
 
         public void ShowLicenseNumberByStatus(VehiclesEnums.eVehicleStatus i_Status)
