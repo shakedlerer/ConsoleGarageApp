@@ -7,7 +7,7 @@ namespace Ex03.ConsoleUI
         private const int k_NumberOfMenuOptions = 8;
         private readonly string k_GarageMenu = string.Format(
 @" --------------------------------------------------
-|              Welcome to our Garage:              |
+|              Welcome to our Garage               |
  --------------------------------------------------
 1. Add New Car
 2. See all license Number Vehicle in garage
@@ -34,6 +34,7 @@ namespace Ex03.ConsoleUI
             {
                 PrintMessage(i_Title);
             }
+
             PrintOptionsToChoose(i_Options);
             selectedNumber = GetNumberInRange(1, i_Options.Length);
 

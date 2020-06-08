@@ -2,7 +2,7 @@
 {
     public class ElectricEngine : Engine
     {
-        const string k_InvalidChargingTime = "Error: Can't charge this much time, please try again";
+        private const string k_InvalidChargingTime = "Error: Can't charge this much time, please try again";
 
         public ElectricEngine(float i_MaxHours) :
             base(i_MaxHours)

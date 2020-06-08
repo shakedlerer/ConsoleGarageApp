@@ -4,8 +4,8 @@ namespace Ex03.GarageLogic
 {
     public class FuelEngine : Engine
     {
-        const string k_InvalidFuelAmount = "Error: Can't fill this much fuel, please try again";
-        const string k_InvalidFuelType = "Error: Incorrect fuel type selected, the correct fuel type is {0} {1}{1}";
+        private const string k_InvalidFuelAmount = "Error: Can't fill this much fuel, please try again";
+        private const string k_InvalidFuelType = "Error: Incorrect fuel type selected, the correct fuel type is {0} {1}{1}";
         private VehiclesEnums.eFuelType m_FuelType;
 
         public FuelEngine(float i_MaxFuelCapacity, VehiclesEnums.eFuelType i_FuelType) :
